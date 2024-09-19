@@ -20,16 +20,4 @@ public class Level {
     @Column(name = "level", length = 12)
     private String level;
 
-    @Column(name = "i_created_at", updatable = false)
-    private LocalDateTime iCreatedAt;
-
-
-    @PrePersist
-    protected void onCreate() {
-        iCreatedAt = LocalDateTime.now();
-
-    }
-
-
-
 }
