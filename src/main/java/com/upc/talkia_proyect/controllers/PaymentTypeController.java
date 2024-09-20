@@ -1,5 +1,6 @@
 package com.upc.talkia_proyect.controllers;
 
+import com.upc.talkia_proyect.dtos.PaymentTypeDTO;
 import com.upc.talkia_proyect.entities.PaymentType;
 import com.upc.talkia_proyect.services.PaymentTypeService;
 import org.modelmapper.ModelMapper;
@@ -20,8 +21,10 @@ public class PaymentTypeController {
 
 
     @GetMapping("/paymentsType")
-    public List<PaymentType> listPaymentTypes(){
-        return null;
+    public List<PaymentTypeDTO> listPaymentTypes(){
+        List<PaymentType> list = paymentTypeService.listPaymentTypes();
+        List<PaymentTypeDTO> listDTO = modelMapper.map(list, List.class);
+        return listDTO;
     }
 
 
