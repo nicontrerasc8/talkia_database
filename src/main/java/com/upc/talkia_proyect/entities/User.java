@@ -36,7 +36,7 @@ public class User {
     private LocalDate dateOfBirth;
 
     @Column(name = "total_points")
-    private Integer totalPoints;
+    private Double totalPoints;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "roles_id")
