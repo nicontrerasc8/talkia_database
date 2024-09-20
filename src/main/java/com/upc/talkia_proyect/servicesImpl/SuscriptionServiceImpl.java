@@ -19,7 +19,7 @@ public class SuscriptionServiceImpl implements SuscriptionService {
     }
 
     @Override
-    public Suscription getSuscriptionById(int id) {
-        return suscriptionRepository.getSuscriptionById(id);
+    public Suscription getSuscriptionById(int susId) {
+        return suscriptionRepository.getSuscriptionById(susId);
     }
 }
