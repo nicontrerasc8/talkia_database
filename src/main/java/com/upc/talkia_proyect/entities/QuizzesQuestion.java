@@ -28,13 +28,15 @@ public class QuizzesQuestion {
     private String userAnswer;
 
     @Column(name = "points_earned")
-    private Integer pointsEarned;
+    private Double pointsEarned;
 
     @Column(name = "attempt")
     private Integer attempt;
 
     @Column(name = "i_attempt_at", updatable = false)
     private LocalDateTime iAttemptAt;
+
+    private Boolean is_correct;
 
     @PrePersist
     protected void onCreate() {

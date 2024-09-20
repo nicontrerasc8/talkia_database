@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 public class UserServiceImpl implements UserService {
     @Autowired
@@ -17,4 +19,22 @@ public class UserServiceImpl implements UserService {
     public User insertUser(User user) {
         return userRepository.save(user);
     }
+
+    @Override
+    public List<User> listUsers() {
+        return userRepository.findAll();
+    }
+
+
+    @Override
+    @Transactional
+    public boolean existsUser(String userName, String password){
+        for(User user: listUsers()) {
+            if(user.getUserName().equals(userName) && user.getPassword().equals(password)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

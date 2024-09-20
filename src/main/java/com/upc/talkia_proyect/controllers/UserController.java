@@ -21,4 +21,9 @@ public class UserController {
         user = userService.insertUser(user);
         return modelMapper.map(user, UserDTO.class);
     }
+
+    @GetMapping("/users_exist/{userName}/{password}")
+    public boolean existsUser(@PathVariable String userName, @PathVariable String password){
+        return userService.existsUser(userName, password);
+    }
 }
