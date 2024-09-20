@@ -1,5 +1,6 @@
 package com.upc.talkia_proyect.controllers;
 
+import com.upc.talkia_proyect.dtos.QuestionDTO;
 import com.upc.talkia_proyect.entities.Question;
 import com.upc.talkia_proyect.services.QuestionService;
 import org.modelmapper.ModelMapper;
@@ -16,7 +17,7 @@ public class QuestionController {
     private QuestionService questionService;
 
     @PostMapping("/question")
-    public Question insertQuestion(@RequestBody Question question){
+    public QuestionDTO insertQuestion(@RequestBody QuestionDTO question){
         return null;
     }
 }
