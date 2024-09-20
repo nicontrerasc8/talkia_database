@@ -39,7 +39,34 @@ public class SuscriptionHistoryServiceImpl implements SuscriptionHistoryService 
     @Transactional
 
     public String insertInManyToManyTable(int userId, int susId, int paymentTypeId) {
-
+//Ubicar al user
+        User user = userRepository.getUserById(userId);
+        //Seleccionar suscripcion
+        Suscription sus = suRepository.getSuscriptionById(susId);
+        //Seleccionar tipo de pago
+        PaymentType paymentType = paymentTypeRepository.getPaymentTypeById(paymentTypeId);
+        //Crear pago
+        Payment payment = new Payment();
+        payment.setPaymentType(paymentType);
+        payment.setAmount(sus.getPrice());
+        payment.setDate(LocalDateTime.now());
+        //Insertar pago
+        //paymentRepository.save(payment);
+        //Crear objeto SuscriptionsHistory
+        SuscriptionsHistory sh = new SuscriptionsHistory();
+        sh.setStartDate(LocalDate.now());
+        LocalDate endDate;
+        if(sus.getName().equals("Mensual")){
+            endDate = LocalDate.now().plusMonths(1);
+        }else{
+            endDate = LocalDate.now().plusYears(1);
+        }
+        sh.setEndDate(endDate);
+        sh.setStatus("Activado");
+        sh.setUser(user);
+        sh.setSuscription(sus);
+        sh.setPayment(payment);
+        shRepository.save(sh);
         return "Se ha confirmado exitosamente la suscripción al plan ";
 
     }
