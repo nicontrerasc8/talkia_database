@@ -1,4 +1,5 @@
 package com.upc.talkia_proyect.controllers;
+import com.upc.talkia_proyect.dtos.LevelDTO;
 import com.upc.talkia_proyect.entities.Level;
 import com.upc.talkia_proyect.services.LevelService;
 import org.modelmapper.ModelMapper;
@@ -19,8 +20,11 @@ public class LevelController {
     ModelMapper modelMapper = new ModelMapper();
 
     @GetMapping("/levels")
-    public List<Level> listLevels(){
-        return null;
+    public List<LevelDTO> listLevels(){
+        List<Level> levels=levelService.listLevels();
+        ModelMapper modelMapper = new ModelMapper();
+        List<LevelDTO> levelsDTO =modelMapper.map(levels, List.class);
+        return levelsDTO;
     }
 
 }
