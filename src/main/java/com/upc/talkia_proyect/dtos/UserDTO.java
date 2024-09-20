@@ -23,7 +23,7 @@ public class UserDTO {
     private String email;
     private String password;
     private LocalDate dateOfBirth;
-    private Integer totalPoints;
+    private Double totalPoints;
     private Role role;
     private LocalDateTime iCreatedAt;
     private LocalDateTime iModifiedAt;
