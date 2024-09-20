@@ -21,7 +21,7 @@ public class Quiz {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "quizzes_id", nullable = false)
     private Integer id;
-
+    private Double totalPoints;
     @Column(name = "i_created_at", updatable = false)
     private LocalDateTime iCreatedAt;
     @PrePersist

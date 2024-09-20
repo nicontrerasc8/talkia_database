@@ -5,9 +5,7 @@ import com.upc.talkia_proyect.entities.Quiz;
 import com.upc.talkia_proyect.services.QuizService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +22,11 @@ public class QuizController {
         List<QuizDTO> quizDTOs=modelMapper.map(quizzes,List.class);
         return quizDTOs;
     }
-    
+
+    @PostMapping("/quiz/{userId}")
+    public Quiz insertQuiz(@PathVariable int userId){
+        return quizService.insertQuiz(userId);
+    }
 
 
 
