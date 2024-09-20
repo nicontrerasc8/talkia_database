@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 @Repository
 public interface PaymentTypeRepository extends JpaRepository<PaymentType, Integer> {
-    public PaymentType findPaymentTypeById(int id);
+    public PaymentType getPaymentTypeById(int id);
 
 
 }

@@ -19,7 +19,7 @@ public class PaymentTypeServiceImpl implements PaymentTypeService {
     }
 
     @Override
-    public PaymentType findPaymentTypeById(int id) {
+    public PaymentType getPaymentTypeById(int id) {
         return paymentTypeRepository.findById(id).get();
     }
 }

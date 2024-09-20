@@ -25,7 +25,7 @@ public class QuizServiceImpl implements QuizService {
     @Override
     public Quiz insertQuiz(int userId) {
         Quiz quiz = new Quiz();
-        User user = userRepository.findUserById(userId);
+        User user = userRepository.getUserById(userId);
         quiz.setUser(user);
         quiz.setTotalPoints(0.0);
         quizRepository.save(quiz);
