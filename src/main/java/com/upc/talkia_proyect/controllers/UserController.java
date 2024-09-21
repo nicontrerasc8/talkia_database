@@ -42,5 +42,10 @@ public class UserController {
         return userService.listUserByRegisterDate(startDate, endDate);
     }
 
+    @GetMapping("/users_status/{status}")
+    public List<User> listUsersByStatus(@PathVariable String status){
+        return userService.listUsersByStatus(status);
+    }
+
 
 }

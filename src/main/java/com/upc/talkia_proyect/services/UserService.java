@@ -11,4 +11,5 @@ public interface UserService {
     public List<User> listUsers();
     public boolean existsUser(String userName, String password);
     public List<User> listUserByRegisterDate(LocalDate startDate, LocalDate endDate);
+    public List<User> listUsersByStatus(String status);
 }

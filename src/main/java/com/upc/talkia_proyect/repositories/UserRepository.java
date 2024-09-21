@@ -15,4 +15,6 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     User getUserById(int userId);
     @Query("select u from User u where u.iCreatedAt between :starDate and :endDate")
     List<User> listUsersByRegisterDate(@Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate);
+    @Query("select sh.user from SuscriptionsHistory sh where sh.status =:status")
+    List<User> listUsersByStatus(@Param("status")String status);
 }
