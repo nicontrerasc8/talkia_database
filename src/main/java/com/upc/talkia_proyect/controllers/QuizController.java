@@ -7,7 +7,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 @RestController
@@ -21,7 +21,7 @@ public class QuizController {
     @GetMapping("/quizzes")
     public List<QuizDTO> listQuizzes(){
         List<Quiz> quizzes =quizService.listQuizzes();
-        List<QuizDTO> quizDTOs=modelMapper.map(quizzes,List.class);
+        List<QuizDTO> quizDTOs= modelMapper.map(quizzes,List.class);
         return quizDTOs;
     }
 
