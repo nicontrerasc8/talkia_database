@@ -5,10 +5,9 @@ import com.upc.talkia_proyect.entities.Question;
 import com.upc.talkia_proyect.services.QuestionService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api")
@@ -23,5 +22,13 @@ public class QuestionController {
         Question question = modelMapper.map(questionDTO, Question.class);
         question = questionService.insertQuestion(question);
         return modelMapper.map(question, QuestionDTO.class);
+    }
+
+    @GetMapping("/questions")
+    public List<QuestionDTO> listQuestions(){
+        List<Question>list = questionService.listQuestions();
+        ModelMapper modelMapper = new ModelMapper();
+        List<QuestionDTO> listDTO = modelMapper.map(list, List.class);
+        return listDTO;
     }
 }

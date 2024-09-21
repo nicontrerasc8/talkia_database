@@ -27,4 +27,8 @@ public class QuestionServiceImpl implements QuestionService {
         return questionRepository.getQuestionsByLevel(level);
     }
 
+    @Override
+    public List<Question> listQuestions(){
+        return questionRepository.findAll();
+    }
 }

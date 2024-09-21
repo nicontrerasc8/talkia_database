@@ -10,4 +10,5 @@ import java.util.List;
 public interface QuestionService {
     public Question insertQuestion(Question question);
     List<Question> getQuestionsByLevel(Level level);
+    public List<Question> listQuestions();
 }
