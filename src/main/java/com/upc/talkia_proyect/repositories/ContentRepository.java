@@ -11,6 +11,9 @@ import java.util.List;
 
 @Repository
 public interface ContentRepository extends JpaRepository<Content, Integer> {
+
+    public Content getContentByTitle(String title);
+
     @Query("select new com.upc.talkia_proyect.dtos.queries.ShowContentByFilterDTO(c.title) from Content c " +
             "join c.levels l where l.level = :level")
     public List<ShowContentByFilterDTO> listContentByLevels(@Param("level") String level);

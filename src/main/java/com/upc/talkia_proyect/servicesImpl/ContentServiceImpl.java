@@ -59,4 +59,9 @@ public class ContentServiceImpl implements ContentService {
     public List<Content> listAllContent() {
         return contentRepository.findAll();
     }
+
+    @Override
+    public Content getContentByTitle(String title){
+        return contentRepository.getContentByTitle(title);
+    }
 }

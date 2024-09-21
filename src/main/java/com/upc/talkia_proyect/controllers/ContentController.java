@@ -65,4 +65,11 @@ public class ContentController {
         List<ContentDTO> contentDTOs = modelMapper.map(contents, List.class);
         return contentDTOs;
     }
+
+    @GetMapping("/content/title/{title}")
+    public ContentDTO getContentByTitle(@PathVariable String title) {
+        ModelMapper modelMapper = new ModelMapper();
+        Content content = contentService.getContentByTitle(title);
+        return modelMapper.map(content, ContentDTO.class);
+    }
 }
