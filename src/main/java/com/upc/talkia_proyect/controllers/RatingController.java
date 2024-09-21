@@ -1,5 +1,6 @@
 package com.upc.talkia_proyect.controllers;
 
+import com.upc.talkia_proyect.dtos.RatingDTO;
 import com.upc.talkia_proyect.dtos.queries.ShowRatingByContentDTO;
 import com.upc.talkia_proyect.entities.Rating;
 import com.upc.talkia_proyect.services.RatingService;
@@ -7,6 +8,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -29,7 +31,9 @@ public class RatingController {
     }
 
     @GetMapping("/ratingsByUser/{userId}")
-    public List<Rating> listRatingByUser(@PathVariable int userId){
-        return ratingService.listRatingByUser(userId);
+    public List<RatingDTO> listRatingByUser(@PathVariable int userId){
+        List<Rating> ratings = ratingService.listRatingByUser(userId);
+        List<RatingDTO> ratingsDTO = modelMapper.map(ratings,List.class);
+        return ratingsDTO;
     }
 }
