@@ -66,7 +66,7 @@ public class SuscriptionHistoryServiceImpl implements SuscriptionHistoryService 
         sh.setSuscription(sus);
         sh.setPayment(payment);
         shRepository.save(sh);
-        return "Se ha confirmado exitosamente la suscripción al plan ";
+        return "Se ha confirmado exitosamente la suscripción al plan " + sus.getName();
     }
 
     @Override
