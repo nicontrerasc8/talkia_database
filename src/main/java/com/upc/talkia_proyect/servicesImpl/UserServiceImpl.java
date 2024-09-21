@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -42,4 +44,11 @@ public class UserServiceImpl implements UserService {
         return userRepository.getUserById(userId);
     }
 
+    @Override
+    public List<User> listUserByRegisterDate(LocalDate startDate, LocalDate endDate){
+        LocalDateTime startDateTime = startDate.atStartOfDay();
+        LocalDateTime endDateTime = endDate.atStartOfDay();
+
+        return userRepository.listUsersByRegisterDate(startDateTime, endDateTime);
+    }
 }

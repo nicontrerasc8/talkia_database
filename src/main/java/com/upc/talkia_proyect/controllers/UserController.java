@@ -7,6 +7,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -35,5 +36,11 @@ public class UserController {
         List<UserDTO> userDTOS = modelMapper.map(users, List.class);
         return userDTOS;
     }
+
+    @GetMapping("/users_register_date/{startDate}/{endDate}")
+    public List<User> listUserByRegisterDate(@PathVariable LocalDate startDate,@PathVariable  LocalDate endDate){
+        return userService.listUserByRegisterDate(startDate, endDate);
+    }
+
 
 }
