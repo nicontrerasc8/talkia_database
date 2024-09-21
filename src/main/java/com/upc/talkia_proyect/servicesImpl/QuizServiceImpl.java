@@ -31,4 +31,9 @@ public class QuizServiceImpl implements QuizService {
         quizRepository.save(quiz);
         return quiz;
     }
+
+    @Override
+    public List<Quiz> listQuizzesByUserId(int userId) {
+        return quizRepository.listQuizzesByUserId(userId);
+    }
 }

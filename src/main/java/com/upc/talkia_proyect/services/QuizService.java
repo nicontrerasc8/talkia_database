@@ -8,6 +8,6 @@ import java.util.List;
 public interface QuizService {
     public List<Quiz> listQuizzes();
     public Quiz insertQuiz(int userId);
-
+    public List<Quiz> listQuizzesByUserId(int userId);
 }
 

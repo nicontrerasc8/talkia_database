@@ -15,7 +15,9 @@ import java.util.List;
 public class QuizController {
     @Autowired
     private QuizService quizService;
+
     ModelMapper modelMapper=new ModelMapper();
+
     @GetMapping("/quizzes")
     public List<QuizDTO> listQuizzes(){
         List<Quiz> quizzes =quizService.listQuizzes();
@@ -28,6 +30,8 @@ public class QuizController {
         return quizService.insertQuiz(userId);
     }
 
-
-
+    @GetMapping("/quizzes/{userId}")
+    public List<Quiz> listQuizzesByUserId(@PathVariable int userId) {
+        return quizService.listQuizzesByUserId(userId);
+    }
 }
