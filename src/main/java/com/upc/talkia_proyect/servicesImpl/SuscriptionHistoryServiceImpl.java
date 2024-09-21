@@ -73,4 +73,14 @@ public class SuscriptionHistoryServiceImpl implements SuscriptionHistoryService 
     public List<HistoryByObjectDTO> listHistoryByUser(int userId) {
         return shRepository.listHistoryByUser(userId);
     }
+
+    @Override
+    public List<HistoryByObjectDTO> listHistoryByUserAndSuscription(int userId, String suscriptionName) {
+        return shRepository.listHistoryByUserAndSuscription(userId, suscriptionName);
+    }
+    @Override
+    public List<HistoryByObjectDTO> listHistoryByPaymentType(String paymentTypeName) {
+        return shRepository.listHistoryByPaymentType(paymentTypeName);
+    }
+
 }

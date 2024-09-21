@@ -22,5 +22,15 @@ public class SuscriptionHistoryController {
     @GetMapping("/suscriptionHistoryByUser/{userId}")
     public List<HistoryByObjectDTO> listHistoryByUser(@PathVariable int userId){
         return suscriptionHistoryService.listHistoryByUser(userId);
+
     }
+    @GetMapping("/suscriptionHistoryByPaymenyType/{paymentTypeName}")
+    public List<HistoryByObjectDTO> listHistoryByPaymentType(@PathVariable String paymentTypeName) {
+        return suscriptionHistoryService.listHistoryByPaymentType(paymentTypeName);
+    }
+    @GetMapping("/suscriptionHistoryByUser/listHistoryByUserSuscription/{userId}/{sName}")
+    List<HistoryByObjectDTO> listHistoryByUserAndSuscription(@PathVariable int userId, @PathVariable String sName){
+        return suscriptionHistoryService.listHistoryByUserAndSuscription(userId, sName);
+    }
+
 }
