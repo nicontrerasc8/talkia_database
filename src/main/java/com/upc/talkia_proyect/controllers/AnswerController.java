@@ -25,13 +25,13 @@ public class AnswerController {
         return modelMapper.map(answer,AnswerDTO.class);
     }
 
-    @GetMapping("/answers/listAnswersByQuestionAdmin")
-    public List<ShowAnswersByQuestionAdminDTO> listAnswerByQuestionAdmin(int questionId) {
+    @GetMapping("/answers/listAnswersByQuestionAdmin/{questionId}")
+    public List<ShowAnswersByQuestionAdminDTO> listAnswerByQuestionAdmin(@PathVariable int questionId) {
         return answerService.listAnswerByQuestionAdmin(questionId);
     }
 
-    @GetMapping("/answers/listAnswersByQuestionUser")
-    public List<ShowAnswersByQuestionUserDTO> listAnswerByQuestionUser(int questionId) {
+    @GetMapping("/answers/listAnswersByQuestionUser/{questionId}")
+    public List<ShowAnswersByQuestionUserDTO> listAnswerByQuestionUser(@PathVariable int questionId) {
         return answerService.listAnswerByQuestionUser(questionId);
     }
 
