@@ -47,5 +47,15 @@ public class UserController {
         return userService.listUsersByStatus(status);
     }
 
+    @GetMapping("/user_by_username/{username}")
+    public User getUserByUserNameContains(@PathVariable String username){
+        return  userService.getUserByUserNameContains(username);
+    }
+    @GetMapping("/user_by_id/{userId}")
+    public User getUserById(@PathVariable int userId){
+        return userService.getUserById(userId);
+
+    }
+
 
 }
