@@ -4,6 +4,7 @@ import com.upc.talkia_proyect.dtos.queries.ShowRatingByContentDTO;
 import com.upc.talkia_proyect.entities.Rating;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -13,4 +14,7 @@ public interface RatingRepository extends JpaRepository<Rating, Integer> {
 
     @Query("select new com.upc.talkia_proyect.dtos.queries.ShowRatingByContentDTO(r.content.title, avg(r.score)) from Rating r group by r.content.title")
     public List<ShowRatingByContentDTO> ListContentOrderByScore();
+
+    @Query("select r from Rating r where r.user.id = :userId")
+    public List<Rating> listRatingByUser(@Param("userId") int userId);
 }

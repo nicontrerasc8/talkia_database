@@ -1,6 +1,7 @@
 package com.upc.talkia_proyect.services;
 
 import com.upc.talkia_proyect.dtos.queries.ShowRatingByContentDTO;
+import com.upc.talkia_proyect.entities.Rating;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -9,4 +10,5 @@ import java.util.List;
 public interface RatingService {
     public Integer insertRating(int id_content, int id_user, int rating);
     public List<ShowRatingByContentDTO> ListContentOrderByScore();
+    public List<Rating> listRatingByUser(int userId);
 }

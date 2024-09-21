@@ -41,4 +41,9 @@ public class RatingServiceImpl implements RatingService {
     public List<ShowRatingByContentDTO> ListContentOrderByScore(){
         return ratingRepository.ListContentOrderByScore();
     }
+
+    @Override
+    public List<Rating> listRatingByUser(int userId){
+        return ratingRepository.listRatingByUser(userId);
+    }
 }

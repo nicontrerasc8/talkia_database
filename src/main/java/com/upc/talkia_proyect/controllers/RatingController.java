@@ -1,6 +1,7 @@
 package com.upc.talkia_proyect.controllers;
 
 import com.upc.talkia_proyect.dtos.queries.ShowRatingByContentDTO;
+import com.upc.talkia_proyect.entities.Rating;
 import com.upc.talkia_proyect.services.RatingService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,5 +26,10 @@ public class RatingController {
     @GetMapping("/ratingsContentByScore")
     public List<ShowRatingByContentDTO> ListContentOrderByScore(){
         return ratingService.ListContentOrderByScore();
+    }
+
+    @GetMapping("/ratingsByUser/{userId}")
+    public List<Rating> listRatingByUser(@PathVariable int userId){
+        return ratingService.listRatingByUser(userId);
     }
 }
