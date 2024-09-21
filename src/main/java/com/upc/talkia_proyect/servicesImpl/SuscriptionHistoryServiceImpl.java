@@ -1,5 +1,6 @@
 package com.upc.talkia_proyect.servicesImpl;
 
+import com.upc.talkia_proyect.dtos.queries.HistoryByObjectDTO;
 import com.upc.talkia_proyect.entities.*;
 import com.upc.talkia_proyect.repositories.PaymentTypeRepository;
 import com.upc.talkia_proyect.repositories.SuscriptionHistoryRepository;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 
@@ -68,6 +70,10 @@ public class SuscriptionHistoryServiceImpl implements SuscriptionHistoryService 
         sh.setPayment(payment);
         shRepository.save(sh);
         return "Se ha confirmado exitosamente la suscripción al plan ";
+    }
 
+    @Override
+    public List<HistoryByObjectDTO> listHistoryByUser(int userId) {
+        return shRepository.listHistoryByUser(userId);
     }
 }
