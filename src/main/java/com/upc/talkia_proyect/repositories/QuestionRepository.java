@@ -9,6 +9,6 @@ import java.util.List;
 
 @Repository
 public interface QuestionRepository extends JpaRepository<Question, Integer> {
-
+    List<Question> getQuestionsByLevel(Level level);
 
 }

@@ -16,8 +16,12 @@ public class QuestionController {
     @Autowired
     private QuestionService questionService;
 
+    ModelMapper modelMapper = new ModelMapper();
+
     @PostMapping("/question")
-    public QuestionDTO insertQuestion(@RequestBody QuestionDTO question){
-        return null;
+    public QuestionDTO insertQuestion(@RequestBody QuestionDTO questionDTO){
+        Question question = modelMapper.map(questionDTO, Question.class);
+        question = questionService.insertQuestion(question);
+        return modelMapper.map(question, QuestionDTO.class);
     }
 }

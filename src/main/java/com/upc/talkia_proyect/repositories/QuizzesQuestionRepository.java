@@ -22,4 +22,5 @@ public interface QuizzesQuestionRepository extends JpaRepository<QuizzesQuestion
     @Query("select count(qq) from QuizzesQuestion qq where qq.quiz.user.id = :userId and qq.is_correct = true")
     public Long getTotalCorrectAnswers(@Param("userId") int userId);
 
+    QuizzesQuestion getQuizzesQuestionById(Integer id);
 }

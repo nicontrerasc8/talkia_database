@@ -2,10 +2,7 @@ package com.upc.talkia_proyect.controllers;
 
 import com.upc.talkia_proyect.services.QuizzesQuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
@@ -25,5 +22,10 @@ public class QuizzesQuestionController {
     @GetMapping("quizzesQuestion/getAvgCorrectAnswers/{userId}")
     public Double getAverageCorrectAnswers(@PathVariable int userId){
         return qqService.getAverageCorrectAnswers(userId);
+    }
+
+    @PutMapping("/quizzesQuestion/answerQuestion/{qqId}/{userAnswer}")
+    public String answerQuestion(@PathVariable int qqId, @PathVariable String userAnswer){
+        return qqService.answerQuestion(qqId, userAnswer);
     }
 }

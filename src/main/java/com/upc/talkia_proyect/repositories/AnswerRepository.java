@@ -15,4 +15,7 @@ public interface AnswerRepository extends JpaRepository<Answer, Integer> {
 
     @Query("select new com.upc.talkia_proyect.dtos.queries.ShowAnswersByQuestionUserDTO(a.id, a.description) from Answer a where a.question.id=:questionId")
     List<ShowAnswersByQuestionUserDTO> listAnswerByQuestionUser(@Param("questionId") int questionId);
+
+    @Query("select a from Answer a where a.question.id=:questionId and a.isCorrect=true")
+    Answer getCorrectAnswerByQuestionId(@Param("questionId") int questionId);
 }
