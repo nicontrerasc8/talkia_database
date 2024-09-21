@@ -2,10 +2,7 @@ package com.upc.talkia_proyect.servicesImpl;
 
 import com.upc.talkia_proyect.dtos.queries.HistoryByObjectDTO;
 import com.upc.talkia_proyect.entities.*;
-import com.upc.talkia_proyect.repositories.PaymentTypeRepository;
-import com.upc.talkia_proyect.repositories.SuscriptionHistoryRepository;
-import com.upc.talkia_proyect.repositories.SuscriptionRepository;
-import com.upc.talkia_proyect.repositories.UserRepository;
+import com.upc.talkia_proyect.repositories.*;
 import com.upc.talkia_proyect.services.SuscriptionHistoryService;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,8 +24,8 @@ public class SuscriptionHistoryServiceImpl implements SuscriptionHistoryService 
     @Autowired
     private UserRepository userRepository;
 
-//    @Autowired
-//    private PaymentRepository paymentRepository;
+   @Autowired
+    private PaymentRepository paymentRepository;
 
     @Autowired
     private PaymentTypeRepository paymentTypeRepository;
@@ -53,7 +50,7 @@ public class SuscriptionHistoryServiceImpl implements SuscriptionHistoryService 
         payment.setAmount(sus.getPrice());
         payment.setDate(LocalDateTime.now());
         //Insertar pago
-        //paymentRepository.save(payment);
+        paymentRepository.save(payment);
         //Crear objeto SuscriptionsHistory
         SuscriptionsHistory sh = new SuscriptionsHistory();
         sh.setStartDate(LocalDate.now());
