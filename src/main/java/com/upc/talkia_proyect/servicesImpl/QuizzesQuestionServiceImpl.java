@@ -61,7 +61,7 @@ public class QuizzesQuestionServiceImpl implements QuizzesQuestionService {
             }
             return "Incorrect. "+ question.getFeedback();
         }
-        return "Has llegado al límite de intentos";
+        return "Has llegado al límite de intentos permitidos";
 
     }
 
