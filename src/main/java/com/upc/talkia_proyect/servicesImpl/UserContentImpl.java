@@ -1,5 +1,6 @@
 package com.upc.talkia_proyect.servicesImpl;
 
+import com.upc.talkia_proyect.dtos.queries.ShowHistorialContentDTO;
 import com.upc.talkia_proyect.entities.Content;
 import com.upc.talkia_proyect.entities.User;
 import com.upc.talkia_proyect.entities.UserContent;
@@ -10,6 +11,8 @@ import com.upc.talkia_proyect.services.UserContentService;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class UserContentImpl implements UserContentService {
@@ -35,5 +38,10 @@ public class UserContentImpl implements UserContentService {
         userContent.setContent(content);
         userContentRepository.save(userContent);
         return 1;
+    }
+
+    @Override
+    public List<ShowHistorialContentDTO> listUserContent(){
+        return userContentRepository.listUserContent();
     }
 }
