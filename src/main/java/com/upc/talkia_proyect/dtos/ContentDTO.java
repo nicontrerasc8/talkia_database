@@ -1,11 +1,18 @@
 package com.upc.talkia_proyect.dtos;
 
 import com.upc.talkia_proyect.entities.Level;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
-
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class ContentDTO {
     private Integer id;
     private String title;

@@ -7,6 +7,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api")
 public class UserController {
@@ -26,4 +28,12 @@ public class UserController {
     public boolean existsUser(@PathVariable String userName, @PathVariable String password){
         return userService.existsUser(userName, password);
     }
+
+    @GetMapping("/users")
+    public List<UserDTO> listUsers(){
+        List<User>users = userService.listUsers();
+        List<UserDTO> userDTOS = modelMapper.map(users, List.class);
+        return userDTOS;
+    }
+
 }
