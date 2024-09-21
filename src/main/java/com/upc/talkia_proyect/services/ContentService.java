@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface ContentService {
     public Content insertContent(Content content);
+    public List<Content> listAllContent();
     public List<ShowContentByFilterDTO> listContentByLevels(String level);
     public List<ShowContentByFilterDTO> listContentByLevelsAndTypes(String level, String type);
     public List<ShowContentByFilterDTO> listContentByTypes(String type);

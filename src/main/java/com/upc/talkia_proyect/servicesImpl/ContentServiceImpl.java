@@ -54,4 +54,9 @@ public class ContentServiceImpl implements ContentService {
     public List<ShowContentByFilterDTO> listContentByTheme(String theme) {
         return contentRepository.listContentByTheme(theme);
     }
+
+    @Override
+    public List<Content> listAllContent() {
+        return contentRepository.findAll();
+    }
 }

@@ -23,5 +23,4 @@ public class SuscriptionController {
         List<SuscriptionDTO> suscriptionDTOs = modelMapper.map(suscriptions, List.class);
         return suscriptionDTOs;
     }
-
 }

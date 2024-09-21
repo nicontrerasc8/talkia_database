@@ -58,7 +58,11 @@ public class ContentController {
         return contentService.listContentByTheme(theme);
     }
 
-
-
-
+    @GetMapping("/contents")
+    public List<ContentDTO> contentList() {
+        List<Content> contents = contentService.listAllContent();
+        ModelMapper modelMapper = new ModelMapper();
+        List<ContentDTO> contentDTOs = modelMapper.map(contents, List.class);
+        return contentDTOs;
+    }
 }
