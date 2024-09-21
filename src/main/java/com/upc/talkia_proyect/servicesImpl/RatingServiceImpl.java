@@ -1,5 +1,6 @@
 package com.upc.talkia_proyect.servicesImpl;
 
+import com.upc.talkia_proyect.dtos.queries.ShowRatingByContentDTO;
 import com.upc.talkia_proyect.entities.Content;
 import com.upc.talkia_proyect.entities.Rating;
 import com.upc.talkia_proyect.entities.User;
@@ -10,6 +11,8 @@ import com.upc.talkia_proyect.services.RatingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 public class RatingServiceImpl implements RatingService {
@@ -34,4 +37,8 @@ public class RatingServiceImpl implements RatingService {
         return 1;
     }
 
+    @Override
+    public List<ShowRatingByContentDTO> ListContentOrderByScore(){
+        return ratingRepository.ListContentOrderByScore();
+    }
 }

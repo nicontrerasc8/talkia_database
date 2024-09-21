@@ -23,5 +23,4 @@ public class SuscriptionHistoryController {
     public List<HistoryByObjectDTO> listHistoryByUser(@PathVariable int userId){
         return suscriptionHistoryService.listHistoryByUser(userId);
     }
-
 }
