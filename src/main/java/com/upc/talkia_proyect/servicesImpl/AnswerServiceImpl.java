@@ -1,10 +1,14 @@
 package com.upc.talkia_proyect.servicesImpl;
 
+import com.upc.talkia_proyect.dtos.queries.ShowAnswersByQuestionAdminDTO;
+import com.upc.talkia_proyect.dtos.queries.ShowAnswersByQuestionUserDTO;
 import com.upc.talkia_proyect.entities.Answer;
 import com.upc.talkia_proyect.repositories.AnswerRepository;
 import com.upc.talkia_proyect.services.AnswerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class AnswerServiceImpl implements AnswerService {
@@ -13,5 +17,15 @@ public class AnswerServiceImpl implements AnswerService {
     @Override
     public Answer insertAnswer(Answer answer){
         return answerRepository.save(answer);
+    }
+
+    @Override
+    public List<ShowAnswersByQuestionAdminDTO> listAnswerByQuestionAdmin(int questionId) {
+        return answerRepository.listAnswerByQuestionAdmin(questionId);
+    }
+
+    @Override
+    public List<ShowAnswersByQuestionUserDTO> listAnswerByQuestionUser(int questionId) {
+        return answerRepository.listAnswerByQuestionUser(questionId);
     }
 }
