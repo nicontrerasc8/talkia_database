@@ -1,6 +1,8 @@
 package com.upc.talkia_proyect.controllers;
 
+import com.upc.talkia_proyect.dtos.PaymentDTO;
 import com.upc.talkia_proyect.dtos.queries.ShowYearlyPaymentsDTO;
+import com.upc.talkia_proyect.entities.Payment;
 import com.upc.talkia_proyect.services.PaymentService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,5 +29,11 @@ public class PaymentController {
 
     public List<ShowYearlyPaymentsDTO>listHistoriesByYear( @PathVariable Integer userId, @PathVariable Integer year) {
         return paymentService.listHistoriesByYear(userId, year);
+    }
+    @GetMapping("/payments")
+    public List<PaymentDTO> listPayments(){
+        List<Payment> list = paymentService.listPayments();
+        List<PaymentDTO> listDTO = modelMapper.map(list, List.class);
+        return listDTO;
     }
 }
