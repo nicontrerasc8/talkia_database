@@ -1,6 +1,7 @@
 package com.upc.talkia_proyect.servicesImpl;
 
 
+import com.upc.talkia_proyect.dtos.queries.ShowQuestionByLevelDTO;
 import com.upc.talkia_proyect.entities.Level;
 import com.upc.talkia_proyect.entities.Question;
 import com.upc.talkia_proyect.repositories.QuestionRepository;
@@ -31,4 +32,9 @@ public class QuestionServiceImpl implements QuestionService {
     public List<Question> listQuestions(){
         return questionRepository.findAll();
     }
+    @Override
+    public List<ShowQuestionByLevelDTO> listQuestionsByLevel(String level) {
+        return questionRepository.listQuestionsByLevel(level);
+    }
+
 }

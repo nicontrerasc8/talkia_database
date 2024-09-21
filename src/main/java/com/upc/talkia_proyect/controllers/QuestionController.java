@@ -1,6 +1,7 @@
 package com.upc.talkia_proyect.controllers;
 
 import com.upc.talkia_proyect.dtos.QuestionDTO;
+import com.upc.talkia_proyect.dtos.queries.ShowQuestionByLevelDTO;
 import com.upc.talkia_proyect.entities.Question;
 import com.upc.talkia_proyect.services.QuestionService;
 import org.modelmapper.ModelMapper;
@@ -30,5 +31,9 @@ public class QuestionController {
         ModelMapper modelMapper = new ModelMapper();
         List<QuestionDTO> listDTO = modelMapper.map(list, List.class);
         return listDTO;
+    }
+    @GetMapping("/level/{level}")
+    public List<ShowQuestionByLevelDTO>listQuestionsByLevel(@PathVariable String level){
+        return questionService.listQuestionsByLevel(level);
     }
 }
