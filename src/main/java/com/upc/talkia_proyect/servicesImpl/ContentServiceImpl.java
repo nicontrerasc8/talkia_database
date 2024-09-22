@@ -1,5 +1,6 @@
 package com.upc.talkia_proyect.servicesImpl;
 
+import com.upc.talkia_proyect.dtos.queries.ShowContentByDayDTO;
 import com.upc.talkia_proyect.dtos.queries.ShowContentByFilterDTO;
 import com.upc.talkia_proyect.entities.Content;
 import com.upc.talkia_proyect.repositories.ContentRepository;
@@ -63,5 +64,9 @@ public class ContentServiceImpl implements ContentService {
     @Override
     public Content getContentByTitle(String title){
         return contentRepository.getContentByTitle(title);
+    }
+    @Override
+    public List<ShowContentByDayDTO> listContentOrderByDateOfPublication(){
+        return contentRepository.listContentOrderByDateOfPublication();
     }
 }

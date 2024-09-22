@@ -1,5 +1,6 @@
 package com.upc.talkia_proyect.services;
 
+import com.upc.talkia_proyect.dtos.queries.ShowContentByDayDTO;
 import com.upc.talkia_proyect.dtos.queries.ShowContentByFilterDTO;
 import com.upc.talkia_proyect.entities.Content;
 
@@ -16,5 +17,7 @@ public interface ContentService {
     public List<ShowContentByFilterDTO> listContentByAllFilters(String theme, String type, String level);
     public List<ShowContentByFilterDTO> listContentByThemeAndTypes(String theme, String type);
     public List<ShowContentByFilterDTO> listContentByTheme(String theme);
+
+    public List<ShowContentByDayDTO> listContentOrderByDateOfPublication();
 
 }

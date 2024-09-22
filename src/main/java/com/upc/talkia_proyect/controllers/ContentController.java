@@ -1,6 +1,7 @@
 package com.upc.talkia_proyect.controllers;
 
 import com.upc.talkia_proyect.dtos.ContentDTO;
+import com.upc.talkia_proyect.dtos.queries.ShowContentByDayDTO;
 import com.upc.talkia_proyect.dtos.queries.ShowContentByFilterDTO;
 import com.upc.talkia_proyect.entities.Content;
 import com.upc.talkia_proyect.services.ContentService;
@@ -71,5 +72,9 @@ public class ContentController {
         ModelMapper modelMapper = new ModelMapper();
         Content content = contentService.getContentByTitle(title);
         return modelMapper.map(content, ContentDTO.class);
+    }
+    @GetMapping("/content_fecha")
+    public List<ShowContentByDayDTO> listContentOrderByDateOfPublication() {
+        return contentService.listContentOrderByDateOfPublication();
     }
 }
