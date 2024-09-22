@@ -16,39 +16,38 @@ public interface ContentRepository extends JpaRepository<Content, Integer> {
 
     public Content getContentByTitle(String title);
 
-    @Query("select new com.upc.talkia_proyect.dtos.queries.ShowContentByFilterDTO(r.content.title, avg(r.score),r.content.year) from Rating r " +
-            "join r.content.levels l where l.level = :level")
+    @Query("select new com.upc.talkia_proyect.dtos.queries.ShowContentByFilterDTO(r.content.title, avg(r.score),r.content.year) from Rating r join r.content.levels l where l.level = :level group by avg(r.score)")
     public List<ShowContentByFilterDTO> listContentByLevels(@Param("level") String level);
 
     @Query("select new com.upc.talkia_proyect.dtos.queries.ShowContentByFilterDTO(r.content.title, avg(r.score),r.content.year) from Rating r " +
-            "join r.content.levels l where l.level = :level and r.content.type =:type")
+            "join r.content.levels l where l.level = :level and r.content.type =:type group by avg(r.score)")
     public List<ShowContentByFilterDTO>  listContentByLevelsAndTypes(@Param("level") String level, @Param("type") String type);
 
     @Query("select new com.upc.talkia_proyect.dtos.queries.ShowContentByFilterDTO(r.content.title, avg(r.score),r.content.year) from Rating r " +
-            " where r.content.type =:type")
+            " where r.content.type =:type group by avg(r.score)")
     public List<ShowContentByFilterDTO> listContentByTypes(@Param("type") String type);
 
     @Query("select new com.upc.talkia_proyect.dtos.queries.ShowContentByFilterDTO(r.content.title, avg(r.score),r.content.year) from Rating r " +
-            " where r.content.theme =:theme")
+            " where r.content.theme =:theme group by avg(r.score)")
     public List<ShowContentByFilterDTO> listContentByTheme(@Param("theme") String theme);
 
     @Query("select new com.upc.talkia_proyect.dtos.queries.ShowContentByFilterDTO(r.content.title, avg(r.score),r.content.year) from Rating r " +
-            " where r.content.theme =:theme and r.content.type=:type")
+            " where r.content.theme =:theme and r.content.type=:type group by avg(r.score)")
     public List<ShowContentByFilterDTO> listContentByThemeAndTypes(@Param("theme") String theme, @Param("type") String type);
 
     @Query("select new com.upc.talkia_proyect.dtos.queries.ShowContentByFilterDTO(r.content.title, avg(r.score),r.content.year) from Rating r " +
-            "join r.content.levels l where l.level = :level and r.content.theme =:theme and r.content.type=:type  ")
+            "join r.content.levels l where l.level = :level and r.content.theme =:theme and r.content.type=:type group by avg(r.score)")
     public List<ShowContentByFilterDTO> listContentByAllFilters(@Param("theme") String theme, @Param("type") String type, @Param("level") String level);
 
     @Query("select new com.upc.talkia_proyect.dtos.queries.ShowContentByFilterDTO(r.content.title, avg(r.score),r.content.year) from Rating r " +
-            "join r.content.levels l where l.level = :level and r.content.theme =:theme")
+            "join r.content.levels l where l.level = :level and r.content.theme =:theme group by avg(r.score)")
     public List<ShowContentByFilterDTO>  listContentByLevelsAndTheme(@Param("level") String level, @Param("theme") String theme);
     @Query("select new com.upc.talkia_proyect.dtos.queries.ShowContentByDayDTO(r.content.title, avg(r.score),r.content.year) " +
-            "from Rating r order by r.content.year asc")
+            "from Rating r group by avg(r.score) order by r.content.year asc")
     public List<ShowContentByDayDTO> listContentOrderByDateOfPublicationAsc();
 
     @Query("select new com.upc.talkia_proyect.dtos.queries.ShowContentByDayDTO(r.content.title, avg(r.score),r.content.year) " +
-            "from Rating r order by r.content.year desc")
+            "from Rating r group by avg(r.score) order by r.content.year desc")
     public List<ShowContentByDayDTO> listContentOrderByDateOfPublicationDesc();
 
     @Query("select new com.upc.talkia_proyect.dtos.queries.UrlDTO(c.link) from Content c where c.title=:title")
