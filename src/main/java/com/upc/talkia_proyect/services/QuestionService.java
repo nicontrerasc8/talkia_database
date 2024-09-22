@@ -14,4 +14,6 @@ public interface QuestionService {
     public Question updateQuestion(Question question);
     public List<Question> listQuestions();
     List<ShowQuestionByLevelDTO> listQuestionsByLevel(String level);
+    public void deleteQuestion(int questionId);
+
 }

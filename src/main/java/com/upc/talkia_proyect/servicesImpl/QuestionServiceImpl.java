@@ -30,6 +30,11 @@ public class QuestionServiceImpl implements QuestionService {
         }
         return null;
     }
+    @Override
+    @Transactional
+    public void deleteQuestion(int id) {
+        questionRepository.deleteById(id);
+    }
 
     @Override
     public List<Question> getQuestionsByLevel(Level level){

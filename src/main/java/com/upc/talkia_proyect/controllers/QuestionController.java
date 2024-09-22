@@ -44,4 +44,9 @@ public class QuestionController {
     public List<ShowQuestionByLevelDTO>listQuestionsByLevel(@PathVariable String level){
         return questionService.listQuestionsByLevel(level);
     }
+    @DeleteMapping("/question/{id}")
+    public void deleteQuestion(@PathVariable int id){
+        questionService.deleteQuestion(id);
+    }
+
 }
