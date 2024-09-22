@@ -12,4 +12,5 @@ import lombok.Setter;
 public class ShowRatingByContentDTO {
     private String content;
     private Double avgRating;
+    private int year;
 }

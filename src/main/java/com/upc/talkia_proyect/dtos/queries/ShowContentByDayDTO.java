@@ -11,6 +11,7 @@ import lombok.Setter;
 @NoArgsConstructor
 
 public class ShowContentByDayDTO {
-    String title;
-    int year;
+    private String title;
+    private Double avgRating;
+    private int year;
 }

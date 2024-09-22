@@ -16,39 +16,39 @@ public interface ContentRepository extends JpaRepository<Content, Integer> {
 
     public Content getContentByTitle(String title);
 
-    @Query("select new com.upc.talkia_proyect.dtos.queries.ShowContentByFilterDTO(c.title) from Content c " +
-            "join c.levels l where l.level = :level")
+    @Query("select new com.upc.talkia_proyect.dtos.queries.ShowContentByFilterDTO(r.content.title, avg(r.score),r.content.year) from Rating r " +
+            "join r.content.levels l where l.level = :level")
     public List<ShowContentByFilterDTO> listContentByLevels(@Param("level") String level);
 
-    @Query("select new com.upc.talkia_proyect.dtos.queries.ShowContentByFilterDTO(c.title) from Content c " +
-            "join c.levels l where l.level = :level and c.type =:type")
+    @Query("select new com.upc.talkia_proyect.dtos.queries.ShowContentByFilterDTO(r.content.title, avg(r.score),r.content.year) from Rating r " +
+            "join r.content.levels l where l.level = :level and r.content.type =:type")
     public List<ShowContentByFilterDTO>  listContentByLevelsAndTypes(@Param("level") String level, @Param("type") String type);
 
-    @Query("select new com.upc.talkia_proyect.dtos.queries.ShowContentByFilterDTO(c.title) from Content c " +
-            " where c.type =:type")
+    @Query("select new com.upc.talkia_proyect.dtos.queries.ShowContentByFilterDTO(r.content.title, avg(r.score),r.content.year) from Rating r " +
+            " where r.content.type =:type")
     public List<ShowContentByFilterDTO> listContentByTypes(@Param("type") String type);
 
-    @Query("select new com.upc.talkia_proyect.dtos.queries.ShowContentByFilterDTO(c.title) from Content c " +
-            " where c.theme =:theme")
+    @Query("select new com.upc.talkia_proyect.dtos.queries.ShowContentByFilterDTO(r.content.title, avg(r.score),r.content.year) from Rating r " +
+            " where r.content.theme =:theme")
     public List<ShowContentByFilterDTO> listContentByTheme(@Param("theme") String theme);
 
-    @Query("select new com.upc.talkia_proyect.dtos.queries.ShowContentByFilterDTO(c.title) from Content c " +
-            " where c.theme =:theme and c.type=:type")
+    @Query("select new com.upc.talkia_proyect.dtos.queries.ShowContentByFilterDTO(r.content.title, avg(r.score),r.content.year) from Rating r " +
+            " where r.content.theme =:theme and r.content.type=:type")
     public List<ShowContentByFilterDTO> listContentByThemeAndTypes(@Param("theme") String theme, @Param("type") String type);
 
-    @Query("select new com.upc.talkia_proyect.dtos.queries.ShowContentByFilterDTO(c.title) from Content c " +
-            "join c.levels l where l.level = :level and c.theme =:theme and c.type=:type  ")
+    @Query("select new com.upc.talkia_proyect.dtos.queries.ShowContentByFilterDTO(r.content.title, avg(r.score),r.content.year) from Rating r " +
+            "join r.content.levels l where l.level = :level and r.content.theme =:theme and r.content.type=:type  ")
     public List<ShowContentByFilterDTO> listContentByAllFilters(@Param("theme") String theme, @Param("type") String type, @Param("level") String level);
 
-    @Query("select new com.upc.talkia_proyect.dtos.queries.ShowContentByFilterDTO(c.title) from Content c " +
-            "join c.levels l where l.level = :level and c.theme =:theme")
+    @Query("select new com.upc.talkia_proyect.dtos.queries.ShowContentByFilterDTO(r.content.title, avg(r.score),r.content.year) from Rating r " +
+            "join r.content.levels l where l.level = :level and r.content.theme =:theme")
     public List<ShowContentByFilterDTO>  listContentByLevelsAndTheme(@Param("level") String level, @Param("theme") String theme);
-    @Query("select new com.upc.talkia_proyect.dtos.queries.ShowContentByDayDTO(c.title, c.year) " +
-            "from Content c order by c.year asc")
+    @Query("select new com.upc.talkia_proyect.dtos.queries.ShowContentByDayDTO(r.content.title, avg(r.score),r.content.year) " +
+            "from Rating r order by r.content.year asc")
     public List<ShowContentByDayDTO> listContentOrderByDateOfPublicationAsc();
 
-    @Query("select new com.upc.talkia_proyect.dtos.queries.ShowContentByDayDTO(c.title, c.year) " +
-            "from Content c order by c.year desc")
+    @Query("select new com.upc.talkia_proyect.dtos.queries.ShowContentByDayDTO(r.content.title, avg(r.score),r.content.year) " +
+            "from Rating r order by r.content.year desc")
     public List<ShowContentByDayDTO> listContentOrderByDateOfPublicationDesc();
 
     @Query("select new com.upc.talkia_proyect.dtos.queries.UrlDTO(c.link) from Content c where c.title=:title")

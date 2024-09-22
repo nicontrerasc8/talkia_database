@@ -10,5 +10,8 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ShowContentByFilterDTO {
-    String content;
+    private String title;
+    private Double avgRating;
+    private int year;
+
 }
