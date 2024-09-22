@@ -1,13 +1,11 @@
 package com.upc.talkia_proyect.controllers;
 
-import com.upc.talkia_proyect.dtos.queries.HistoryByAllDTO;
-import com.upc.talkia_proyect.dtos.queries.HistoryByObjectDTO;
-import com.upc.talkia_proyect.dtos.queries.HistoryByPaymentSuscriptionDTO;
-import com.upc.talkia_proyect.dtos.queries.HistoryByUserPaymentDTO;
+import com.upc.talkia_proyect.dtos.queries.*;
 import com.upc.talkia_proyect.services.SuscriptionHistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -53,4 +51,17 @@ public class SuscriptionHistoryController {
     public List<HistoryByAllDTO> listHistoryByAllFilters(@PathVariable int userId, @PathVariable String paymentTypeName, @PathVariable String suscriptionName){
         return suscriptionHistoryService.listHistoryByAllFilters(userId, paymentTypeName, suscriptionName);
     }
+    @GetMapping("suscriptionHistories/countHistoriesByPaymentType")
+    public List<CountHistoriesByObjectDTO> countHistoriesByPaymentType(){
+        return suscriptionHistoryService.countHistoriesByPaymentType();
+    }
+    @GetMapping("suscriptionHistories/countActiveUsersBySubType")
+    public List<CountHistoriesByObjectDTO> countActiveUsersBySubType(){
+        return suscriptionHistoryService.countActiveUsersBySubType();
+    }
+    @GetMapping("suscriptionHistories/listTotalAmountBySubType/{startDate}/{endDate}")
+    public List<TotalAmountBySubTypeDTO> listTotalAmountBySubType(@PathVariable LocalDate startDate, @PathVariable LocalDate endDate){
+        return suscriptionHistoryService.listTotalAmountBySubType(startDate, endDate);
+    }
+
 }

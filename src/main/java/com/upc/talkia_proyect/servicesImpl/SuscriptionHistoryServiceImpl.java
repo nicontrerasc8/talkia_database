@@ -1,9 +1,6 @@
 package com.upc.talkia_proyect.servicesImpl;
 
-import com.upc.talkia_proyect.dtos.queries.HistoryByAllDTO;
-import com.upc.talkia_proyect.dtos.queries.HistoryByObjectDTO;
-import com.upc.talkia_proyect.dtos.queries.HistoryByPaymentSuscriptionDTO;
-import com.upc.talkia_proyect.dtos.queries.HistoryByUserPaymentDTO;
+import com.upc.talkia_proyect.dtos.queries.*;
 import com.upc.talkia_proyect.entities.*;
 import com.upc.talkia_proyect.repositories.*;
 import com.upc.talkia_proyect.services.SuscriptionHistoryService;
@@ -103,5 +100,20 @@ public class SuscriptionHistoryServiceImpl implements SuscriptionHistoryService 
     @Override
     public List<HistoryByAllDTO> listHistoryByAllFilters(int userId, String paymentTypeName, String suscriptionName){
         return shRepository.listHistoryByAllFilters(userId, paymentTypeName, suscriptionName);
+    }
+
+    @Override
+    public List<CountHistoriesByObjectDTO> countHistoriesByPaymentType() {
+        return shRepository.countHistoriesByPaymentType();
+    }
+
+    @Override
+    public List<CountHistoriesByObjectDTO> countActiveUsersBySubType() {
+        return shRepository.countActiveUsersBySubType();
+    }
+
+    @Override
+    public List<TotalAmountBySubTypeDTO> listTotalAmountBySubType(LocalDate startDate, LocalDate endDate) {
+        return shRepository.listTotalAmountBySubType(startDate, endDate);
     }
 }
