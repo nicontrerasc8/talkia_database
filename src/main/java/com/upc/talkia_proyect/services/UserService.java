@@ -8,6 +8,7 @@ import java.util.List;
 public interface UserService {
     public User insertUser(User user);
     public User getUserById(int userId);
+    public void deleteUser(int id);
     public List<User> listUsers();
     public boolean existsUser(String userName, String password);
     public List<User> listUserByRegisterDate(LocalDate startDate, LocalDate endDate);

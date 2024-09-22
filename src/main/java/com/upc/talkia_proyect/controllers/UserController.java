@@ -18,6 +18,11 @@ public class UserController {
 
     ModelMapper modelMapper = new ModelMapper();
 
+    @DeleteMapping("/user/{id}")
+    public void deleteUser(int id){
+        userService.deleteUser(id);
+    }
+
     @PostMapping("/user")
     public UserDTO insertUser(@RequestBody UserDTO userDTO){
         User user = modelMapper.map(userDTO, User.class);
