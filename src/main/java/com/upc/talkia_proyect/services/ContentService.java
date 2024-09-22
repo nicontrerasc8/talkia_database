@@ -19,7 +19,8 @@ public interface ContentService {
     public List<ShowContentByFilterDTO> listContentByThemeAndTypes(String theme, String type);
     public List<ShowContentByFilterDTO> listContentByTheme(String theme);
     public Content updateContent(Content content);
-    public List<ShowContentByDayDTO> listContentOrderByDateOfPublication();
+    public List<ShowContentByDayDTO> listContentOrderByDateOfPublicationAsc();
+    public List<ShowContentByDayDTO> listContentOrderByDateOfPublicationDesc();
     public List<UrlDTO> listContentByLink(String title);
     public void deleteContent(int id);
 

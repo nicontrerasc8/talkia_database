@@ -44,8 +44,13 @@ public interface ContentRepository extends JpaRepository<Content, Integer> {
             "join c.levels l where l.level = :level and c.theme =:theme")
     public List<ShowContentByFilterDTO>  listContentByLevelsAndTheme(@Param("level") String level, @Param("theme") String theme);
     @Query("select new com.upc.talkia_proyect.dtos.queries.ShowContentByDayDTO(c.title, c.year) " +
-            "from Content c order by c.year")
-    public List<ShowContentByDayDTO> listContentOrderByDateOfPublication();
+            "from Content c order by c.year asc")
+    public List<ShowContentByDayDTO> listContentOrderByDateOfPublicationAsc();
+
+    @Query("select new com.upc.talkia_proyect.dtos.queries.ShowContentByDayDTO(c.title, c.year) " +
+            "from Content c order by c.year desc")
+    public List<ShowContentByDayDTO> listContentOrderByDateOfPublicationDesc();
+
     @Query("select new com.upc.talkia_proyect.dtos.queries.UrlDTO(c.link) from Content c where c.title=:title")
     public List<UrlDTO> listContentByLink(@Param("title") String title);
 
