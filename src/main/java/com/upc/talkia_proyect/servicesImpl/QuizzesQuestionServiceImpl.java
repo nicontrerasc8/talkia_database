@@ -2,6 +2,7 @@ package com.upc.talkia_proyect.servicesImpl;
 
 import com.upc.talkia_proyect.entities.Question;
 import com.upc.talkia_proyect.entities.QuizzesQuestion;
+import com.upc.talkia_proyect.entities.User;
 import com.upc.talkia_proyect.repositories.AnswerRepository;
 import com.upc.talkia_proyect.repositories.QuizzesQuestionRepository;
 import com.upc.talkia_proyect.services.QuizzesQuestionService;
@@ -30,6 +31,7 @@ public class QuizzesQuestionServiceImpl implements QuizzesQuestionService {
         Question question = qq.getQuestion();
         Double points = qq.getPointsEarned();
         Double pointsQuiz = qq.getQuiz().getTotalPoints();
+        Double pointsUser = qq.getQuiz().getUser().getTotalPoints();
 
         if(qq.getAttempt()<2 && !qq.getIs_correct()){
             qq.setUserAnswer(userAnswer);
@@ -53,6 +55,8 @@ public class QuizzesQuestionServiceImpl implements QuizzesQuestionService {
                     qq.setIs_correct(true);
                     pointsQuiz += qq.getPointsEarned();
                     qq.getQuiz().setTotalPoints(pointsQuiz);
+                    pointsUser += pointsQuiz;
+
                     return "Now is correct!, haz ganado "+ compensatePoints+" puntos";
                 }
 
