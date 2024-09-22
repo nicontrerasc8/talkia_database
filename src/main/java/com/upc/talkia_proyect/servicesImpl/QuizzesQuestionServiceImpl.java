@@ -1,8 +1,8 @@
 package com.upc.talkia_proyect.servicesImpl;
 
+import com.upc.talkia_proyect.dtos.queries.ShowQuestionsByQuizDTO;
 import com.upc.talkia_proyect.entities.Question;
 import com.upc.talkia_proyect.entities.QuizzesQuestion;
-import com.upc.talkia_proyect.entities.User;
 import com.upc.talkia_proyect.repositories.AnswerRepository;
 import com.upc.talkia_proyect.repositories.QuizzesQuestionRepository;
 import com.upc.talkia_proyect.services.QuizzesQuestionService;
@@ -45,6 +45,8 @@ public class QuizzesQuestionServiceImpl implements QuizzesQuestionService {
                     qq.setIs_correct(true);
                     pointsQuiz += qq.getPointsEarned();
                     qq.getQuiz().setTotalPoints(pointsQuiz);
+                    pointsUser += pointsQuiz;
+                    qq.getQuiz().getUser().setTotalPoints(pointsUser);
                     return "Correct!, haz ganado "+ gainedPoints+" puntos";
 
                 }
@@ -109,6 +111,9 @@ public class QuizzesQuestionServiceImpl implements QuizzesQuestionService {
         return correctAnswers/4.0;
     }
 
+    @Override
+    public List<ShowQuestionsByQuizDTO> listQuestionsByQuizId(int quizId){
+        return qqRepository.listQuestionsByQuizId(quizId);
 
-
+    }
 }

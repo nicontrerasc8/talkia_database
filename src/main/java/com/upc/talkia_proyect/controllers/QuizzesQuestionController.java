@@ -1,8 +1,11 @@
 package com.upc.talkia_proyect.controllers;
 
+import com.upc.talkia_proyect.dtos.queries.ShowQuestionsByQuizDTO;
 import com.upc.talkia_proyect.services.QuizzesQuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api")
@@ -42,4 +45,8 @@ public class QuizzesQuestionController {
         return qqService.getPercentageCorrectAnswers(quizId);
     }
 
+    @GetMapping("quizzesQuestion/listQuestionsByQuiz/{quizId}")
+    public List<ShowQuestionsByQuizDTO> listQuestionsByQuizId(@PathVariable int quizId){
+        return qqService.listQuestionsByQuizId(quizId);
+    }
 }

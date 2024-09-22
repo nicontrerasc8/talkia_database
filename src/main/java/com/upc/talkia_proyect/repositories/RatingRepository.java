@@ -12,7 +12,7 @@ import java.util.List;
 @Repository
 public interface RatingRepository extends JpaRepository<Rating, Integer> {
 
-    @Query("select new com.upc.talkia_proyect.dtos.queries.ShowRatingByContentDTO(r.content.title, avg(r.score), r.content.year) from Rating r group by r.content.title order by avg(r.score) desc")
+    @Query("select new com.upc.talkia_proyect.dtos.queries.ShowRatingByContentDTO(r.content.title, avg(r.score), r.content.year) from Rating r group by r.content.title order by r.content.title, r.content.year desc")
     public List<ShowRatingByContentDTO> ListContentOrderByScore();
 
     @Query("select r from Rating r where r.user.id = :userId")
