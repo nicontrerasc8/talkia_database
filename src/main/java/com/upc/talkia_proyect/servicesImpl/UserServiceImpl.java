@@ -38,6 +38,15 @@ public class UserServiceImpl implements UserService {
         }
         return false;
     }
+    @Override
+    @Transactional
+    public User updateUser(User user) {
+        if (userRepository.existsById(user.getId())) {
+            return userRepository.save(user);
+        }
+        return null;
+    }
+
 
     @Override
     public User getUserById(int userId){

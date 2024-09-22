@@ -29,6 +29,13 @@ public class UserController {
     public boolean existsUser(@PathVariable String userName, @PathVariable String password){
         return userService.existsUser(userName, password);
     }
+    @PutMapping("/user")
+    public UserDTO updateUser(@RequestBody UserDTO userDTO){
+        ModelMapper modelmapper = new ModelMapper();
+        User user = modelmapper.map(userDTO, User.class);
+        user = userService.updateUser(user);
+        return modelmapper.map(user, UserDTO.class);
+    }
 
     @GetMapping("/users")
     public List<UserDTO> listUsers(){
