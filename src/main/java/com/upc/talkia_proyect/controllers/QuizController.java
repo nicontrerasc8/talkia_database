@@ -1,6 +1,8 @@
 package com.upc.talkia_proyect.controllers;
 
 import com.upc.talkia_proyect.dtos.QuizDTO;
+import com.upc.talkia_proyect.dtos.queries.AveragePointsLevelDTO;
+import com.upc.talkia_proyect.dtos.queries.QuizzesPerLevelDTO;
 import com.upc.talkia_proyect.entities.Quiz;
 import com.upc.talkia_proyect.services.QuizService;
 import org.modelmapper.ModelMapper;
@@ -33,5 +35,14 @@ public class QuizController {
     @GetMapping("/quizzes/{userId}")
     public List<Quiz> listQuizzesByUserId(@PathVariable int userId) {
         return quizService.listQuizzesByUserId(userId);
+    }
+
+    @GetMapping("/quizzes/average")
+    public List<AveragePointsLevelDTO> listAveragePoints(){
+        return quizService.listAveragePoints();
+    }
+    @GetMapping("/quizzes/quantity")
+    public List<QuizzesPerLevelDTO> listQuizzesPerLevel(){
+        return quizService.listQuizzesPerLevel();
     }
 }
