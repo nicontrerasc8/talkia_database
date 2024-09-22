@@ -1,6 +1,9 @@
 package com.upc.talkia_proyect.controllers;
 
+import com.upc.talkia_proyect.dtos.queries.HistoryByAllDTO;
 import com.upc.talkia_proyect.dtos.queries.HistoryByObjectDTO;
+import com.upc.talkia_proyect.dtos.queries.HistoryByPaymentSuscriptionDTO;
+import com.upc.talkia_proyect.dtos.queries.HistoryByUserPaymentDTO;
 import com.upc.talkia_proyect.services.SuscriptionHistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -32,5 +35,22 @@ public class SuscriptionHistoryController {
     List<HistoryByObjectDTO> listHistoryByUserAndSuscription(@PathVariable int userId, @PathVariable String sName){
         return suscriptionHistoryService.listHistoryByUserAndSuscription(userId, sName);
     }
+    @GetMapping("suscriptionHistories/listHistoryBySuscription/{suscriptionName}")
+    public List<HistoryByObjectDTO> listHistoryBySuscription(@PathVariable String suscriptionName) {
+        return suscriptionHistoryService.listHistoryBySuscription(suscriptionName);
+    }
+    @GetMapping("suscriptionHistories/listHistoryByPaymentTypeAndSuscription/{paymentTypeName}/{suscriptionName}")
+    public List<HistoryByPaymentSuscriptionDTO> listHistoryByPaymentTypeAndSuscription(@PathVariable String paymentTypeName, @PathVariable String suscriptionName) {
+        return suscriptionHistoryService.listHistoryByPaymentTypeAndSuscription(paymentTypeName, suscriptionName);
+    }
 
+    @GetMapping("suscriptionHistories/listHistoryByUserAndPayment/{userId}/{paymentTypeName}")
+    public List<HistoryByUserPaymentDTO> listHistoryByUserAndPaymentType(@PathVariable int userId, @PathVariable String paymentTypeName) {
+        return suscriptionHistoryService.listHistoryByUserAndPaymentType(userId, paymentTypeName);
+    }
+
+    @GetMapping("suscriptionHistories/listHistoryByAll/{userId}/{paymentTypeName}/{suscriptionName}")
+    public List<HistoryByAllDTO> listHistoryByAllFilters(@PathVariable int userId, @PathVariable String paymentTypeName, @PathVariable String suscriptionName){
+        return suscriptionHistoryService.listHistoryByAllFilters(userId, paymentTypeName, suscriptionName);
+    }
 }

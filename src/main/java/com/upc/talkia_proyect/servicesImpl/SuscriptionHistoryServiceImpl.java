@@ -1,6 +1,9 @@
 package com.upc.talkia_proyect.servicesImpl;
 
+import com.upc.talkia_proyect.dtos.queries.HistoryByAllDTO;
 import com.upc.talkia_proyect.dtos.queries.HistoryByObjectDTO;
+import com.upc.talkia_proyect.dtos.queries.HistoryByPaymentSuscriptionDTO;
+import com.upc.talkia_proyect.dtos.queries.HistoryByUserPaymentDTO;
 import com.upc.talkia_proyect.entities.*;
 import com.upc.talkia_proyect.repositories.*;
 import com.upc.talkia_proyect.services.SuscriptionHistoryService;
@@ -82,5 +85,23 @@ public class SuscriptionHistoryServiceImpl implements SuscriptionHistoryService 
     public List<HistoryByObjectDTO> listHistoryByPaymentType(String paymentTypeName) {
         return shRepository.listHistoryByPaymentType(paymentTypeName);
     }
+    @Override
+    public List<HistoryByObjectDTO> listHistoryBySuscription(String suscriptionName) {
+        return shRepository.listHistoryBySuscription(suscriptionName);
+    }
 
+    @Override
+    public List<HistoryByPaymentSuscriptionDTO> listHistoryByPaymentTypeAndSuscription(String paymentTypeName, String suscriptionName) {
+        return shRepository.listHistoryByPaymentTypeAndSuscription(paymentTypeName, suscriptionName);
+    }
+
+    @Override
+    public List<HistoryByUserPaymentDTO> listHistoryByUserAndPaymentType(int userId, String paymentTypeName) {
+        return shRepository.listHistoryByUserAndPaymentType(userId, paymentTypeName);
+    }
+
+    @Override
+    public List<HistoryByAllDTO> listHistoryByAllFilters(int userId, String paymentTypeName, String suscriptionName){
+        return shRepository.listHistoryByAllFilters(userId, paymentTypeName, suscriptionName);
+    }
 }
