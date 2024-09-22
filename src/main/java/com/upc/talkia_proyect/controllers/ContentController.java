@@ -77,4 +77,12 @@ public class ContentController {
     public List<ShowContentByDayDTO> listContentOrderByDateOfPublication() {
         return contentService.listContentOrderByDateOfPublication();
     }
+    @PutMapping("/content")
+    public ContentDTO updateContent(@RequestBody ContentDTO contentDTO) {
+        ModelMapper modelMapper = new ModelMapper();
+        Content content = modelMapper.map(contentDTO, Content.class);
+        content = contentService.updateContent(content);
+        return modelMapper.map(content, ContentDTO.class);
+
+    }
 }

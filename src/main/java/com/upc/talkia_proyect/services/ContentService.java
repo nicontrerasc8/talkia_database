@@ -17,7 +17,7 @@ public interface ContentService {
     public List<ShowContentByFilterDTO> listContentByAllFilters(String theme, String type, String level);
     public List<ShowContentByFilterDTO> listContentByThemeAndTypes(String theme, String type);
     public List<ShowContentByFilterDTO> listContentByTheme(String theme);
-
+    public Content updateContent(Content content);
     public List<ShowContentByDayDTO> listContentOrderByDateOfPublication();
 
 }
