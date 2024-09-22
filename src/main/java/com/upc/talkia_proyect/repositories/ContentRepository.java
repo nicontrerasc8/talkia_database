@@ -2,6 +2,7 @@ package com.upc.talkia_proyect.repositories;
 
 import com.upc.talkia_proyect.dtos.queries.ShowContentByDayDTO;
 import com.upc.talkia_proyect.dtos.queries.ShowContentByFilterDTO;
+import com.upc.talkia_proyect.dtos.queries.UrlDTO;
 import com.upc.talkia_proyect.entities.Content;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -45,6 +46,8 @@ public interface ContentRepository extends JpaRepository<Content, Integer> {
     @Query("select new com.upc.talkia_proyect.dtos.queries.ShowContentByDayDTO(c.title, c.year) " +
             "from Content c order by c.year")
     public List<ShowContentByDayDTO> listContentOrderByDateOfPublication();
+    @Query("select new com.upc.talkia_proyect.dtos.queries.UrlDTO(c.link) from Content c where c.title=:title")
+    public List<UrlDTO> listContentByLink(@Param("title") String title);
 
 
 }

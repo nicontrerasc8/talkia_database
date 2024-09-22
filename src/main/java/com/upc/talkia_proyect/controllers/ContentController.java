@@ -3,6 +3,7 @@ package com.upc.talkia_proyect.controllers;
 import com.upc.talkia_proyect.dtos.ContentDTO;
 import com.upc.talkia_proyect.dtos.queries.ShowContentByDayDTO;
 import com.upc.talkia_proyect.dtos.queries.ShowContentByFilterDTO;
+import com.upc.talkia_proyect.dtos.queries.UrlDTO;
 import com.upc.talkia_proyect.entities.Content;
 import com.upc.talkia_proyect.services.ContentService;
 import org.modelmapper.ModelMapper;
@@ -85,4 +86,10 @@ public class ContentController {
         return modelMapper.map(content, ContentDTO.class);
 
     }
+
+    @GetMapping("/content_url/{title}")
+    public List<UrlDTO> listContentByUrl(@PathVariable String title) {
+        return contentService.listContentByLink(title);
+    }
+
 }

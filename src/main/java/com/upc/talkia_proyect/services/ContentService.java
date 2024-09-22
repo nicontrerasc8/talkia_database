@@ -2,6 +2,7 @@ package com.upc.talkia_proyect.services;
 
 import com.upc.talkia_proyect.dtos.queries.ShowContentByDayDTO;
 import com.upc.talkia_proyect.dtos.queries.ShowContentByFilterDTO;
+import com.upc.talkia_proyect.dtos.queries.UrlDTO;
 import com.upc.talkia_proyect.entities.Content;
 
 import java.util.List;
@@ -19,5 +20,6 @@ public interface ContentService {
     public List<ShowContentByFilterDTO> listContentByTheme(String theme);
     public Content updateContent(Content content);
     public List<ShowContentByDayDTO> listContentOrderByDateOfPublication();
+    public List<UrlDTO> listContentByLink(String title);
 
 }
