@@ -11,6 +11,7 @@ public interface AnswerService {
     public Answer insertAnswer(Answer answer);
     public List<ShowAnswersByQuestionAdminDTO> listAnswerByQuestionAdmin(int questionId);
     public List<ShowAnswersByQuestionUserDTO> listAnswerByQuestionUser(int questionId);
+    public Answer updateAnswer(Answer answer);
 
 
 }

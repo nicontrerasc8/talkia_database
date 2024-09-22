@@ -29,6 +29,12 @@ public class AnswerServiceImpl implements AnswerService {
     public List<ShowAnswersByQuestionUserDTO> listAnswerByQuestionUser(int questionId) {
         return answerRepository.listAnswerByQuestionUser(questionId);
     }
-
+    @Override
+    public Answer updateAnswer(Answer answer){
+        if(answerRepository.existsById(answer.getId())){
+            return answerRepository.save(answer);
+        }
+        return null;
+    }
 
 }

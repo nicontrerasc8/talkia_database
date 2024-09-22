@@ -34,6 +34,12 @@ public class AnswerController {
     public List<ShowAnswersByQuestionUserDTO> listAnswerByQuestionUser(@PathVariable int questionId) {
         return answerService.listAnswerByQuestionUser(questionId);
     }
+    @PutMapping("/answer")
+    public AnswerDTO updateAnswer(@RequestBody AnswerDTO answerDTO){
+        Answer answer = modelMapper.map(answerDTO, Answer.class);
+        answer=answerService.updateAnswer(answer);
+        return modelMapper.map(answer,AnswerDTO.class);
 
+    }
 
 }
