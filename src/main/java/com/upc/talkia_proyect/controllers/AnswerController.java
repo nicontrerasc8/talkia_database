@@ -18,6 +18,13 @@ public class AnswerController {
     private AnswerService answerService;
     ModelMapper modelMapper = new ModelMapper();
 
+    @DeleteMapping("/answer")
+    public void deleteAnswer(@RequestBody AnswerDTO answerDTO){
+        ModelMapper modelMapper = new ModelMapper();
+        Answer answer = modelMapper.map(answerDTO, Answer.class);
+        answerService.deleteAnswer(answer.getId());
+    }
+
     @PostMapping("/answer")
     public AnswerDTO insertAnswer(@RequestBody AnswerDTO answerDTO){
         Answer answer = modelMapper.map(answerDTO, Answer.class);
