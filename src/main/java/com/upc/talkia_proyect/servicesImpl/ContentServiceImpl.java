@@ -82,4 +82,10 @@ public class ContentServiceImpl implements ContentService {
     public List<UrlDTO> listContentByLink(String title) {
         return contentRepository.listContentByLink(title);
     }
+    @Override
+    public void deleteContent(int id) {
+        if(contentRepository.existsById(id)){
+            contentRepository.deleteById(id);
+        }
+    }
 }

@@ -21,5 +21,6 @@ public interface ContentService {
     public Content updateContent(Content content);
     public List<ShowContentByDayDTO> listContentOrderByDateOfPublication();
     public List<UrlDTO> listContentByLink(String title);
+    public void deleteContent(int id);
 
 }

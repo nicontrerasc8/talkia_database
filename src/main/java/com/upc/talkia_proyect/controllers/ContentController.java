@@ -91,5 +91,11 @@ public class ContentController {
     public List<UrlDTO> listContentByUrl(@PathVariable String title) {
         return contentService.listContentByLink(title);
     }
+    @DeleteMapping("/content")
+    public void deleteContent(@RequestBody ContentDTO contentDTO) {
+        ModelMapper modelMapper = new ModelMapper();
+        Content content = modelMapper.map(contentDTO, Content.class);
+        contentService.deleteContent(content.getId());
+    }
 
 }
