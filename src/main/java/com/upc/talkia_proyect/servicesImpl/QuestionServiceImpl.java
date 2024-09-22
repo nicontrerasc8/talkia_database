@@ -22,6 +22,14 @@ public class QuestionServiceImpl implements QuestionService {
     public Question insertQuestion(Question question) {
         return questionRepository.save(question);
     }
+    @Override
+    @Transactional
+    public Question updateQuestion(Question question) {
+        if(questionRepository.existsById(question.getId())) {
+            return questionRepository.save(question);
+        }
+        return null;
+    }
 
     @Override
     public List<Question> getQuestionsByLevel(Level level){

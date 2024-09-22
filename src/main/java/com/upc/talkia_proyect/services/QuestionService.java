@@ -11,6 +11,7 @@ import java.util.List;
 public interface QuestionService {
     public Question insertQuestion(Question question);
     List<Question> getQuestionsByLevel(Level level);
+    public Question updateQuestion(Question question);
     public List<Question> listQuestions();
     List<ShowQuestionByLevelDTO> listQuestionsByLevel(String level);
 }

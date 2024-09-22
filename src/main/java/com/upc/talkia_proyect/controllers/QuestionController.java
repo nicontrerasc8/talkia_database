@@ -18,6 +18,14 @@ public class QuestionController {
 
     ModelMapper modelMapper = new ModelMapper();
 
+    @PutMapping("/question")
+    public QuestionDTO updateQuestion(@RequestBody QuestionDTO questionDTO){
+        ModelMapper modelMapper = new ModelMapper();
+        Question question = modelMapper.map(questionDTO, Question.class);
+        question = questionService.updateQuestion(question);
+        return modelMapper.map(question, QuestionDTO.class);
+    }
+
     @PostMapping("/question")
     public QuestionDTO insertQuestion(@RequestBody QuestionDTO questionDTO){
         Question question = modelMapper.map(questionDTO, Question.class);
