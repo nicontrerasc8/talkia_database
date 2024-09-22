@@ -3,7 +3,6 @@ package com.upc.talkia_proyect.servicesImpl;
 import com.upc.talkia_proyect.entities.Question;
 import com.upc.talkia_proyect.entities.QuizzesQuestion;
 import com.upc.talkia_proyect.repositories.AnswerRepository;
-import com.upc.talkia_proyect.repositories.QuizRepository;
 import com.upc.talkia_proyect.repositories.QuizzesQuestionRepository;
 import com.upc.talkia_proyect.services.QuizzesQuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -87,6 +86,24 @@ public class QuizzesQuestionServiceImpl implements QuizzesQuestionService {
         }
         return correctAnswers * 1.0 / totalQuestions;
     }
+
+    @Override
+    public Integer getSecondAttemptCorrectAnswers(int quizId) {
+        return qqRepository.getSecondAttemptCorrectAnswers(quizId);
+    }
+
+    @Override
+    public Integer getCorrectAnswersCount(int quizId) {
+        return qqRepository.getCorrectAnswersCount(quizId);
+    }
+
+    @Override
+    public Double getPercentageCorrectAnswers(int quizId) {
+        double correctAnswers = 1.0 * qqRepository.getCorrectAnswersCount(quizId);
+
+        return correctAnswers/4.0;
+    }
+
 
 
 }

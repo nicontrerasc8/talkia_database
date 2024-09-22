@@ -28,4 +28,18 @@ public class QuizzesQuestionController {
     public String answerQuestion(@PathVariable int qqId, @PathVariable String userAnswer){
         return qqService.answerQuestion(qqId, userAnswer);
     }
+
+    @GetMapping("quizzesQuestion/getSecondAttemptCorrect/{quizId}")
+    public Integer getSecondAttemptCorrectAnswers(@PathVariable int quizId){
+        return qqService.getSecondAttemptCorrectAnswers(quizId);
+    }
+    @GetMapping("quizzesQuestion/getCorrectAnswersCount/{quizId}")
+    public Integer getCorrectAnswersCount(@PathVariable int quizId){
+        return qqService.getCorrectAnswersCount(quizId);
+    }
+    @GetMapping("quizzesQuestion/getPercentageCorrectAnswers/{quizId}")
+    public Double getPercentageCorrectAnswers(@PathVariable int quizId){
+        return qqService.getPercentageCorrectAnswers(quizId);
+    }
+
 }

@@ -18,9 +18,17 @@ public interface QuizzesQuestionRepository extends JpaRepository<QuizzesQuestion
     @Query("select count(qq) from QuizzesQuestion qq where qq.quiz.user.id = :userId")
     public Long getTotalQuestions(@Param("userId") int userId);
 
-    //total de preguntas correctas
+
     @Query("select count(qq) from QuizzesQuestion qq where qq.quiz.user.id = :userId and qq.is_correct = true")
     public Long getTotalCorrectAnswers(@Param("userId") int userId);
 
     QuizzesQuestion getQuizzesQuestionById(Integer id);
+
+    @Query("select count(qq) from QuizzesQuestion qq where qq.quiz.id=:quizId and qq.is_correct=true")
+    public Integer getCorrectAnswersCount(@Param("quizId") int quizId);
+
+    @Query("select count(qq) from QuizzesQuestion qq where qq.quiz.id=:quizId and qq.attempt=2 and qq.is_correct=true")
+    public Integer getSecondAttemptCorrectAnswers(@Param("quizId") int quizId);
+
+    public Double getPercentageCorrectAnswers(int quizId);
 }
