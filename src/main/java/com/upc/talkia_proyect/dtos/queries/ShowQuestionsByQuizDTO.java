@@ -11,6 +11,7 @@ import lombok.Setter;
 @NoArgsConstructor
 
 public class ShowQuestionsByQuizDTO {
+    private Integer id;
     private String question;
 
 }
