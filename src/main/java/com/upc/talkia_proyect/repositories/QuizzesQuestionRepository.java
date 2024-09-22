@@ -30,5 +30,5 @@ public interface QuizzesQuestionRepository extends JpaRepository<QuizzesQuestion
     @Query("select count(qq) from QuizzesQuestion qq where qq.quiz.id=:quizId and qq.attempt=2 and qq.is_correct=true")
     public Integer getSecondAttemptCorrectAnswers(@Param("quizId") int quizId);
 
-    public Double getPercentageCorrectAnswers(int quizId);
+
 }
