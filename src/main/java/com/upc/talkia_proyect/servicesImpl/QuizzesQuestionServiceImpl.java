@@ -56,6 +56,7 @@ public class QuizzesQuestionServiceImpl implements QuizzesQuestionService {
                     pointsQuiz += qq.getPointsEarned();
                     qq.getQuiz().setTotalPoints(pointsQuiz);
                     pointsUser += pointsQuiz;
+                    qq.getQuiz().getUser().setTotalPoints(pointsUser);
 
                     return "Now is correct!, haz ganado "+ compensatePoints+" puntos";
                 }
