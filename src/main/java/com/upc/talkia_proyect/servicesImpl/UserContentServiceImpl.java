@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class UserContentImpl implements UserContentService {
+public class UserContentServiceImpl implements UserContentService {
 
     @Autowired
     UserContentRepository userContentRepository;
