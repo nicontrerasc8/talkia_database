@@ -104,14 +104,13 @@ public class SuscriptionHistoryServiceImpl implements SuscriptionHistoryService 
         return shRepository.listHistoryByAllFilters(userId, paymentTypeName, suscriptionName);
     }
 
-    @Override
-    public List<CountHistoriesByObjectDTO> countHistoriesByPaymentType() {
-        return shRepository.countHistoriesByPaymentType();
+    public List<CountHistoriesByObjectDTO> countHistoriesByPaymentType(LocalDate startDate, LocalDate endDate) {
+        return shRepository.countHistoriesByPaymentType(startDate, endDate);
     }
 
     @Override
-    public List<CountHistoriesByObjectDTO> countActiveUsersBySubType() {
-        return shRepository.countActiveUsersBySubType();
+    public List<CountHistoriesByObjectDTO> countHistoriesBySubType(LocalDate startDate, LocalDate endDate) {
+        return shRepository.countHistoriesBySubType(startDate, endDate);
     }
 
     @Override

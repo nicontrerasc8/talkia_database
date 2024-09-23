@@ -51,14 +51,17 @@ public class SuscriptionHistoryController {
     public List<HistoryByAllDTO> listHistoryByAllFilters(@PathVariable int userId, @PathVariable String paymentTypeName, @PathVariable String suscriptionName){
         return suscriptionHistoryService.listHistoryByAllFilters(userId, paymentTypeName, suscriptionName);
     }
-    @GetMapping("suscriptionHistories/countHistoriesByPaymentType")
-    public List<CountHistoriesByObjectDTO> countHistoriesByPaymentType(){
-        return suscriptionHistoryService.countHistoriesByPaymentType();
+
+    @GetMapping("suscriptionHistories/countHistoriesByPaymentType/{startDate}/{endDate}")
+    public List<CountHistoriesByObjectDTO> countHistoriesByPaymentType(@PathVariable LocalDate startDate, @PathVariable LocalDate endDate){
+        return suscriptionHistoryService.countHistoriesByPaymentType(startDate, endDate);
     }
-    @GetMapping("suscriptionHistories/countActiveUsersBySubType")
-    public List<CountHistoriesByObjectDTO> countActiveUsersBySubType(){
-        return suscriptionHistoryService.countActiveUsersBySubType();
+
+    @GetMapping("suscriptionHistories/countHistoriesBySubType/{startDate}/{endDate}")
+    public List<CountHistoriesByObjectDTO> countHistoriesBySubType(@PathVariable LocalDate startDate, @PathVariable LocalDate endDate){
+        return suscriptionHistoryService.countHistoriesBySubType(startDate, endDate);
     }
+
     @GetMapping("suscriptionHistories/listTotalAmountBySubType/{startDate}/{endDate}")
     public List<TotalAmountBySubTypeDTO> listTotalAmountBySubType(@PathVariable LocalDate startDate, @PathVariable LocalDate endDate){
         return suscriptionHistoryService.listTotalAmountBySubType(startDate, endDate);

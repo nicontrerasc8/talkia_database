@@ -45,12 +45,15 @@ public interface SuscriptionHistoryRepository extends JpaRepository<Suscriptions
             "from SuscriptionsHistory sh where sh.startDate between :startDate and :endDate group by sh.suscription.name")
     List<TotalAmountBySubTypeDTO> listTotalAmountBySubType(@Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
 
-    @Query("select new com.upc.talkia_proyect.dtos.queries.CountHistoriesByObjectDTO" +
-            "(sh.payment.paymentType.name ,count(sh)) from SuscriptionsHistory sh group by sh.payment.paymentType.name")
-    List<CountHistoriesByObjectDTO> countHistoriesByPaymentType();
+    //Funciona
+    @Query("select new com.upc.talkia_proyect.dtos.queries.CountHistoriesByObjectDTO(sh.payment.paymentType.name ,count(sh)) " +
+            "from SuscriptionsHistory sh where sh.startDate between :startDate and :endDate group by sh.payment.paymentType.name ")
+    List<CountHistoriesByObjectDTO> countHistoriesByPaymentType(@Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
+
 
     @Query("select new com.upc.talkia_proyect.dtos.queries.CountHistoriesByObjectDTO(sh.suscription.name, count(sh)) from SuscriptionsHistory sh " +
-            "where sh.status = 'Activado' group by sh.suscription.name")
-    List<CountHistoriesByObjectDTO> countActiveUsersBySubType();
+            "where sh.startDate between :startDate and :endDate group by sh.suscription.name")
+    List<CountHistoriesByObjectDTO> countHistoriesBySubType(@Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
+
 
 }
