@@ -14,9 +14,9 @@ import java.time.LocalDate;
 
 
 public class HistoryByPaymentSuscriptionDTO {
+    private String varName1;
+    private String varName2;
     private Double amount;
-    private String userName;
     private String status;
     private LocalDate startDate;
-    private LocalDate endDate;
 }

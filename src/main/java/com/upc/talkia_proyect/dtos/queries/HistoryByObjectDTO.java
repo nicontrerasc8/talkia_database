@@ -14,9 +14,8 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class HistoryByObjectDTO {
     private String varName1;
-    private String varName2;
-    private Double amount;
-    private String status;
+    private int id;
     private LocalDate startDate;
-    private LocalDate endDate;
+    private Double amount;
+
 }

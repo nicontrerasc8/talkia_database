@@ -90,27 +90,22 @@ public class SuscriptionHistoryServiceImpl implements SuscriptionHistoryService 
     }
 
     @Override
-    public List<HistoryByPaymentSuscriptionDTO> listHistoryByPaymentTypeAndSuscription(String paymentTypeName, String suscriptionName) {
+    public List<HistoryByObjectDTO> listHistoryByPaymentTypeAndSuscription(String paymentTypeName, String suscriptionName) {
         return shRepository.listHistoryByPaymentTypeAndSuscription(paymentTypeName, suscriptionName);
     }
 
     @Override
-    public List<HistoryByUserPaymentDTO> listHistoryByUserAndPaymentType(int userId, String paymentTypeName) {
+    public List<HistoryByObjectDTO> listHistoryByUserAndPaymentType(int userId, String paymentTypeName) {
         return shRepository.listHistoryByUserAndPaymentType(userId, paymentTypeName);
     }
 
     @Override
-    public List<HistoryByAllDTO> listHistoryByAllFilters(int userId, String paymentTypeName, String suscriptionName){
+    public List<HistoryByObjectDTO> listHistoryByAllFilters(int userId, String paymentTypeName, String suscriptionName){
         return shRepository.listHistoryByAllFilters(userId, paymentTypeName, suscriptionName);
     }
 
     public List<CountHistoriesByObjectDTO> countHistoriesByPaymentType(LocalDate startDate, LocalDate endDate) {
         return shRepository.countHistoriesByPaymentType(startDate, endDate);
-    }
-
-    @Override
-    public List<CountHistoriesByObjectDTO> countHistoriesBySubType(LocalDate startDate, LocalDate endDate) {
-        return shRepository.countHistoriesBySubType(startDate, endDate);
     }
 
     @Override
