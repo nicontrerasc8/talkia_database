@@ -20,7 +20,7 @@ public class UserController {
     ModelMapper modelMapper = new ModelMapper();
 
     @DeleteMapping("/user/{id}")
-    public void deleteUser(int id){
+    public void deleteUser(@PathVariable int id){
         userService.deleteUser(id);
     }
 
@@ -61,7 +61,7 @@ public class UserController {
     }
 
     @GetMapping("/user_by_username/{username}")
-    public User getUserByUserNameContains(@PathVariable String username){
+    public  List<User> getUserByUserNameContains(@PathVariable String username){
         return  userService.getUserByUserNameContains(username);
     }
     @GetMapping("/user_by_id/{userId}")

@@ -16,6 +16,6 @@ public interface UserService {
     public List<User> listUserByRegisterDate(LocalDate startDate, LocalDate endDate);
     public List<User> listUsersByStatus(String status);
     public User updateUser(User user);
-    public User getUserByUserNameContains(String username);
+    List<User> getUserByUserNameContains(String username);
     public ShowSuscriptionDetailsDTO getCurrentSuscription(int userId);
 }

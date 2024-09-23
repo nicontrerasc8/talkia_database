@@ -24,9 +24,9 @@ public interface UserRepository extends JpaRepository<User, Integer> {
             "and not exists (select 1 from SuscriptionsHistory sh2 where sh2.user = sh.user and sh2.status ='Activado' and sh.startDate>current date )")
     List<User> listUsersByStatus(@Param("status") String status);
 
-    User getUserByUserNameContains(String username);
+    List<User> getUserByUserNameContains(String username);
 
-    @Query("select new com.upc.talkia_proyect.dtos.queries.ShowSuscriptionDetailsDTO(sh.suscription.name, sh.payment.amount) from SuscriptionsHistory sh where sh.user.id =: userId and sh.status= 'Activado'")
+    @Query("select new com.upc.talkia_proyect.dtos.queries.ShowSuscriptionDetailsDTO(sh.suscription.name, sh.payment.amount) from SuscriptionsHistory sh where sh.user.id =:userId and sh.status= 'Activado'")
     public ShowSuscriptionDetailsDTO getCurrentSuscription(@Param("userId") int userId);
 }
 
