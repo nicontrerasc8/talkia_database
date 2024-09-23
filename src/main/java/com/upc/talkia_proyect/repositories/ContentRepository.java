@@ -13,8 +13,10 @@ import java.util.List;
 
 @Repository
 public interface ContentRepository extends JpaRepository<Content, Integer> {
+    @Query("select new com.upc.talkia_proyect.dtos.queries.ShowContentByFilterDTO(r.content.title, avg(r.score),r.content.year) from Rating r " +
+            " where r.content.title = :title group by r.content.title, r.content.year")
 
-    public Content getContentByTitle(String title);
+    public List<ShowContentByFilterDTO> listContentByTitle(@Param("title") String title);
 
     @Query("select new com.upc.talkia_proyect.dtos.queries.ShowContentByFilterDTO(r.content.title, avg(r.score),r.content.year) from Rating r join r.content.levels l where l.level = :level group by r.content.title, r.content.year")
     public List<ShowContentByFilterDTO> listContentByLevels(@Param("level") String level);

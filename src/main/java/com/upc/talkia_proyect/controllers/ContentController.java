@@ -69,10 +69,8 @@ public class ContentController {
     }
 
     @GetMapping("/content/title/{title}")
-    public ContentDTO getContentByTitle(@PathVariable String title) {
-        ModelMapper modelMapper = new ModelMapper();
-        Content content = contentService.getContentByTitle(title);
-        return modelMapper.map(content, ContentDTO.class);
+    public List<ShowContentByFilterDTO> listContentByTitle(@PathVariable String title) {
+        return contentService.listContentByTitle(title);
     }
     @GetMapping("/content_fechaAsc")
     public List<ShowContentByDayDTO> listContentOrderByDateOfPublicationAsc() {

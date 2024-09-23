@@ -71,8 +71,8 @@ public class ContentServiceImpl implements ContentService {
     }
 
     @Override
-    public Content getContentByTitle(String title){
-        return contentRepository.getContentByTitle(title);
+    public List<ShowContentByFilterDTO> listContentByTitle(String title){
+        return contentRepository.listContentByTitle(title);
     }
     @Override
     public List<ShowContentByDayDTO> listContentOrderByDateOfPublicationAsc(){
