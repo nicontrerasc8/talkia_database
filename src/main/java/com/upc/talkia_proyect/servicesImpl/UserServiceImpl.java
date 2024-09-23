@@ -1,5 +1,6 @@
 package com.upc.talkia_proyect.servicesImpl;
 
+import com.upc.talkia_proyect.dtos.queries.ShowSuscriptionDetailsDTO;
 import com.upc.talkia_proyect.entities.User;
 import com.upc.talkia_proyect.repositories.UserRepository;
 import com.upc.talkia_proyect.services.UserService;
@@ -73,7 +74,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUserByUserNameContains(String username){
-        return  userRepository.getUserByUserNameContains(username);
+        return userRepository.getUserByUserNameContains(username);
+    }
+
+    @Override
+    public ShowSuscriptionDetailsDTO getCurrentSuscription(int userId){
+        return userRepository.getCurrentSuscription(userId);
     }
 
 }

@@ -1,6 +1,8 @@
 package com.upc.talkia_proyect.services;
 
+import com.upc.talkia_proyect.dtos.queries.ShowSuscriptionDetailsDTO;
 import com.upc.talkia_proyect.entities.User;
+
 
 import java.time.LocalDate;
 import java.util.List;
@@ -15,4 +17,5 @@ public interface UserService {
     public List<User> listUsersByStatus(String status);
     public User updateUser(User user);
     public User getUserByUserNameContains(String username);
+    public ShowSuscriptionDetailsDTO getCurrentSuscription(int userId);
 }

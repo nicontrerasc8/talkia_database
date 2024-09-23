@@ -1,6 +1,7 @@
 package com.upc.talkia_proyect.controllers;
 
 import com.upc.talkia_proyect.dtos.UserDTO;
+import com.upc.talkia_proyect.dtos.queries.ShowSuscriptionDetailsDTO;
 import com.upc.talkia_proyect.entities.User;
 import com.upc.talkia_proyect.services.UserService;
 import org.modelmapper.ModelMapper;
@@ -66,7 +67,11 @@ public class UserController {
     @GetMapping("/user_by_id/{userId}")
     public User getUserById(@PathVariable int userId){
         return userService.getUserById(userId);
+    }
 
+    @GetMapping("/current_suscription_by_user_id/{userId}")
+    public ShowSuscriptionDetailsDTO getCurrentSuscription(@PathVariable int userId){
+        return userService.getCurrentSuscription(userId);
     }
 
 

@@ -1,5 +1,6 @@
 package com.upc.talkia_proyect.controllers;
 
+import com.upc.talkia_proyect.dtos.queries.ShowContentHistoryDTO;
 import com.upc.talkia_proyect.dtos.queries.ShowHistorialContentDTO;
 import com.upc.talkia_proyect.services.UserContentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,4 +25,10 @@ public class UserContentController {
     public List<ShowHistorialContentDTO> listUserContent(){
         return userContentService.listUserContent();
     }
+
+    @GetMapping("/content_history_by_user/{userId}")
+    public List<ShowContentHistoryDTO> ListUserContentByUser(@PathVariable int userId){
+        return userContentService.ListUserContentByUser(userId);
+    }
+
 }

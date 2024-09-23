@@ -1,5 +1,6 @@
 package com.upc.talkia_proyect.servicesImpl;
 
+import com.upc.talkia_proyect.dtos.queries.ShowContentHistoryDTO;
 import com.upc.talkia_proyect.dtos.queries.ShowHistorialContentDTO;
 import com.upc.talkia_proyect.entities.Content;
 import com.upc.talkia_proyect.entities.User;
@@ -43,5 +44,10 @@ public class UserContentImpl implements UserContentService {
     @Override
     public List<ShowHistorialContentDTO> listUserContent(){
         return userContentRepository.listUserContent();
+    }
+
+    @Override
+    public List<ShowContentHistoryDTO> ListUserContentByUser(int userId) {
+        return userContentRepository.ListUserContentByUser(userId);
     }
 }
