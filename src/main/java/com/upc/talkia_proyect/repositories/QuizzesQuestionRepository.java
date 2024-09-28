@@ -33,7 +33,7 @@ public interface QuizzesQuestionRepository extends JpaRepository<QuizzesQuestion
     @Query("select count(qq) from QuizzesQuestion qq where qq.quiz.id=:quizId and qq.attempt=2 and qq.is_correct=true")
     public Integer getSecondAttemptCorrectAnswers(@Param("quizId") int quizId);
 
-    @Query("select new com.upc.talkia_proyect.dtos.queries.ShowQuestionsByQuizDTO(qq.question.id ,qq.question.description)" +
+    @Query("select new com.upc.talkia_proyect.dtos.queries.ShowQuestionsByQuizDTO(qq.id,qq.question.id ,qq.question.description)" +
             "from QuizzesQuestion qq where qq.quiz.id =:quizId")
     List<ShowQuestionsByQuizDTO> listQuestionsByQuizId(@Param("quizId") int quizId);
 
