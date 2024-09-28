@@ -38,31 +38,27 @@ public class QuizzesQuestionServiceImpl implements QuizzesQuestionService {
             qq.setAttempt(qq.getAttempt() + 1);
 
             if(answerRepository.getCorrectAnswerByQuestionId(question.getId()).getDescription().equals(userAnswer)) {
+                double gainedPoints = 0.0;
+
                 if (qq.getAttempt() == 1) {
-                    double gainedPoints = pointsByLevel.get(question.getLevel().getId()-1);
-                    points += gainedPoints;
-                    qq.setPointsEarned(points);
-                    qq.setIs_correct(true);
-                    pointsQuiz += qq.getPointsEarned();
-                    qq.getQuiz().setTotalPoints(pointsQuiz);
-                    pointsUser += pointsQuiz;
-                    qq.getQuiz().getUser().setTotalPoints(pointsUser);
-                    return "Correct!, haz ganado "+ gainedPoints+" puntos";
+                     gainedPoints = pointsByLevel.get(question.getLevel().getId()-1);
+
 
                 }
                 if(qq.getAttempt()== 2){
-                    double compensatePoints = (pointsByLevel.get(question.getLevel().getId()-1))/(2.0);
-                    points += compensatePoints;
-                    qq.setPointsEarned(points);
-                    qq.setIs_correct(true);
-                    pointsQuiz += qq.getPointsEarned();
-                    qq.getQuiz().setTotalPoints(pointsQuiz);
-                    pointsUser += pointsQuiz;
-                    qq.getQuiz().getUser().setTotalPoints(pointsUser);
+                     gainedPoints = (pointsByLevel.get(question.getLevel().getId()-1))/(2.0);
 
-                    return "Now is correct!, haz ganado "+ compensatePoints+" puntos";
                 }
+                qq.setPointsEarned(gainedPoints);
+                qq.setIs_correct(true);
+                pointsQuiz += gainedPoints;
+                qq.getQuiz().setTotalPoints(pointsQuiz);
+                pointsUser += gainedPoints;
+                qq.getQuiz().getUser().setTotalPoints(pointsUser);
 
+                return qq.getAttempt() == 1 ?
+                        "Correct! You have earned " + gainedPoints + " points." :
+                        "Now correct! You have earned " + gainedPoints + " points.";
 
             }
             return "Incorrect. "+ question.getFeedback();
