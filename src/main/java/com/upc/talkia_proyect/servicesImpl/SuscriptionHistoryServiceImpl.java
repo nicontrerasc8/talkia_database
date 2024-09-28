@@ -54,10 +54,13 @@ public class SuscriptionHistoryServiceImpl implements SuscriptionHistoryService 
         //Crear objeto SuscriptionsHistory
         SuscriptionsHistory sh = new SuscriptionsHistory();
         sh.setStartDate(LocalDate.now());
-        LocalDate endDate;
+        LocalDate endDate=LocalDate.now();
         if(sus.getName().equals("Mensual")){
             endDate = LocalDate.now().plusMonths(1);
-        }else{
+        }if(sus.getName().equals("Semestral")){
+            endDate = LocalDate.now().plusMonths(6);
+        }if(sus.getName().equals("Anual")){
+
             endDate = LocalDate.now().plusYears(1);
         }
         sh.setEndDate(endDate);
