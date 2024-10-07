@@ -27,7 +27,7 @@ public class QuizzesQuestionServiceImpl implements QuizzesQuestionService {
     private UserService userService;
 
 
-    List<Double> pointsByLevel = Arrays.asList(10.0, 20.0, 30.0);
+    List<Double> pointsByLevel = Arrays.asList(20.0, 12.0, 10.0);
 
     @Override
     @Transactional
@@ -64,12 +64,7 @@ public class QuizzesQuestionServiceImpl implements QuizzesQuestionService {
 
                 //Actualizar cuando se acabe el quiz
                 //Verificar aumento de nivel
-                if(qqId%4 ==0){
-                    pointsUser += qq.getQuiz().getTotalPoints();
-                    qq.getQuiz().getUser().setTotalPoints(pointsUser);
-                    userService.updateLevelUser(qq.getQuiz().getUser().getId());
 
-                }
 
                 return qq.getAttempt() == 1 ?
                         "Correct! You have earned " + gainedPoints + " points." :
@@ -78,6 +73,14 @@ public class QuizzesQuestionServiceImpl implements QuizzesQuestionService {
             }
             return "Incorrect. "+ question.getFeedback();
         }
+
+        if(qqId%4 ==0){
+            pointsUser += qq.getQuiz().getTotalPoints();
+            qq.getQuiz().getUser().setTotalPoints(pointsUser);
+            userService.updateLevelUser(qq.getQuiz().getUser().getId());
+
+        }
+
         return "Has llegado al límite de intentos permitidos";
 
     }
