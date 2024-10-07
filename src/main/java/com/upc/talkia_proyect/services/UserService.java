@@ -18,4 +18,6 @@ public interface UserService {
     public User updateUser(User user);
     List<User> getUserByUserNameContains(String username);
     public ShowSuscriptionDetailsDTO getCurrentSuscription(int userId);
+    public void updateLevelUser(int userId);
+
 }

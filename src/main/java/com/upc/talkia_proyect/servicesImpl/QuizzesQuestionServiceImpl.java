@@ -5,7 +5,9 @@ import com.upc.talkia_proyect.entities.Question;
 import com.upc.talkia_proyect.entities.QuizzesQuestion;
 import com.upc.talkia_proyect.repositories.AnswerRepository;
 import com.upc.talkia_proyect.repositories.QuizzesQuestionRepository;
+import com.upc.talkia_proyect.repositories.UserRepository;
 import com.upc.talkia_proyect.services.QuizzesQuestionService;
+import com.upc.talkia_proyect.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,6 +22,9 @@ public class QuizzesQuestionServiceImpl implements QuizzesQuestionService {
 
     @Autowired
     private AnswerRepository answerRepository;
+
+    @Autowired
+    private UserService userService;
 
 
     List<Double> pointsByLevel = Arrays.asList(10.0, 20.0, 30.0);
@@ -53,8 +58,18 @@ public class QuizzesQuestionServiceImpl implements QuizzesQuestionService {
                 qq.setIs_correct(true);
                 pointsQuiz += gainedPoints;
                 qq.getQuiz().setTotalPoints(pointsQuiz);
-                pointsUser += gainedPoints;
-                qq.getQuiz().getUser().setTotalPoints(pointsUser);
+
+                //pointsUser += gainedPoints;
+                //qq.getQuiz().getUser().setTotalPoints(pointsUser);
+
+                //Actualizar cuando se acabe el quiz
+                //Verificar aumento de nivel
+                if(qqId%4 ==0){
+                    pointsUser += qq.getQuiz().getTotalPoints();
+                    qq.getQuiz().getUser().setTotalPoints(pointsUser);
+                    userService.updateLevelUser(qq.getQuiz().getUser().getId());
+
+                }
 
                 return qq.getAttempt() == 1 ?
                         "Correct! You have earned " + gainedPoints + " points." :
@@ -66,8 +81,6 @@ public class QuizzesQuestionServiceImpl implements QuizzesQuestionService {
         return "Has llegado al límite de intentos permitidos";
 
     }
-
-
 
     @Override
     public Double getAveragePoints(int userId) {
