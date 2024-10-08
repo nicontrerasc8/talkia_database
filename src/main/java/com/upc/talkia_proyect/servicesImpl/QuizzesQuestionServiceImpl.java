@@ -34,7 +34,6 @@ public class QuizzesQuestionServiceImpl implements QuizzesQuestionService {
     public String answerQuestion(int qqId, String userAnswer) {
         QuizzesQuestion qq = qqRepository.getQuizzesQuestionById(qqId);
         Question question = qq.getQuestion();
-        Double points = qq.getPointsEarned();
         Double pointsQuiz = qq.getQuiz().getTotalPoints();
         Double pointsUser = qq.getQuiz().getUser().getTotalPoints();
 
@@ -65,20 +64,21 @@ public class QuizzesQuestionServiceImpl implements QuizzesQuestionService {
                 //Actualizar cuando se acabe el quiz
                 //Verificar aumento de nivel
 
+                if(qqId % 4 == 0){
+                    pointsUser += qq.getQuiz().getTotalPoints();
+                    qq.getQuiz().getUser().setTotalPoints(pointsUser);
+                    userService.updateLevelUser(qq.getQuiz().getUser().getId());
+
+                }
+
 
                 return qq.getAttempt() == 1 ?
                         "Correct! You have earned " + gainedPoints + " points." :
                         "Now correct! You have earned " + gainedPoints + " points.";
 
             }
+
             return "Incorrect. "+ question.getFeedback();
-        }
-
-        if(qqId%4 ==0){
-            pointsUser += qq.getQuiz().getTotalPoints();
-            qq.getQuiz().getUser().setTotalPoints(pointsUser);
-            userService.updateLevelUser(qq.getQuiz().getUser().getId());
-
         }
 
         return "Has llegado al límite de intentos permitidos";
