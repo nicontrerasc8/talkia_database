@@ -94,7 +94,7 @@ public class UserServiceImpl implements UserService {
         double userPoints = user.getTotalPoints();
         switch (user.getLevel().getId()){
             case 1:
-                if(userPoints >200){
+                if(userPoints >50){
                     Level level = levelRepository.findById(2);
                     user.setLevel(level);
                 }
