@@ -29,35 +29,35 @@ public class SuscriptionHistoryController {
     public List<HistoryByObjectDTO> listHistoryByPaymentType(@PathVariable String paymentTypeName) {
         return suscriptionHistoryService.listHistoryByPaymentType(paymentTypeName);
     }
-    @GetMapping("/suscriptionHistoryByUser/listHistoryByUserSuscription/{userId}/{sName}")
+    @GetMapping("/listHistoryByUserSuscription/{userId}/{sName}")
     List<HistoryByObjectDTO> listHistoryByUserAndSuscription(@PathVariable int userId, @PathVariable String sName){
         return suscriptionHistoryService.listHistoryByUserAndSuscription(userId, sName);
     }
-    @GetMapping("suscriptionHistories/listHistoryBySuscription/{suscriptionName}")
+    @GetMapping("/listHistoryBySuscription/{suscriptionName}")
     public List<HistoryByObjectDTO> listHistoryBySuscription(@PathVariable String suscriptionName) {
         return suscriptionHistoryService.listHistoryBySuscription(suscriptionName);
     }
-    @GetMapping("suscriptionHistories/listHistoryByPaymentTypeAndSuscription/{paymentTypeName}/{suscriptionName}")
+    @GetMapping("/listHistoryByPaymentTypeAndSuscription/{paymentTypeName}/{suscriptionName}")
     public List<HistoryByObjectDTO> listHistoryByPaymentTypeAndSuscription(@PathVariable String paymentTypeName, @PathVariable String suscriptionName) {
         return suscriptionHistoryService.listHistoryByPaymentTypeAndSuscription(paymentTypeName, suscriptionName);
     }
 
-    @GetMapping("suscriptionHistories/listHistoryByUserAndPayment/{userId}/{paymentTypeName}")
+    @GetMapping("/listHistoryByUserAndPayment/{userId}/{paymentTypeName}")
     public List<HistoryByObjectDTO> listHistoryByUserAndPaymentType(@PathVariable int userId, @PathVariable String paymentTypeName) {
         return suscriptionHistoryService.listHistoryByUserAndPaymentType(userId, paymentTypeName);
     }
 
-    @GetMapping("suscriptionHistories/listHistoryByAll/{userId}/{paymentTypeName}/{suscriptionName}")
+    @GetMapping("/listHistoryByAll/{userId}/{paymentTypeName}/{suscriptionName}")
     public List<HistoryByObjectDTO> listHistoryByAllFilters(@PathVariable int userId, @PathVariable String paymentTypeName, @PathVariable String suscriptionName){
         return suscriptionHistoryService.listHistoryByAllFilters(userId, paymentTypeName, suscriptionName);
     }
 
-    @GetMapping("suscriptionHistories/countHistoriesByPaymentType/{startDate}/{endDate}")
+    @GetMapping("/countHistoriesByPaymentType/{startDate}/{endDate}")
     public List<CountHistoriesByObjectDTO> countHistoriesByPaymentType(@PathVariable LocalDate startDate, @PathVariable LocalDate endDate){
         return suscriptionHistoryService.countHistoriesByPaymentType(startDate, endDate);
     }
 
-      @GetMapping("suscriptionHistories/listTotalAmountBySubType/{startDate}/{endDate}")
+      @GetMapping("/listTotalAmountBySubType/{startDate}/{endDate}")
     public List<TotalAmountBySubTypeDTO> listTotalAmountBySubType(@PathVariable LocalDate startDate, @PathVariable LocalDate endDate){
         return suscriptionHistoryService.listTotalAmountBySubType(startDate, endDate);
     }

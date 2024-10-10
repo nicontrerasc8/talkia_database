@@ -66,7 +66,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> listUserByRegisterDate(LocalDate startDate, LocalDate endDate){
+    public List<User> listUsersByRegisterDate(LocalDate startDate, LocalDate endDate){
         LocalDateTime startDateTime = startDate.atStartOfDay();
         LocalDateTime endDateTime = endDate.atStartOfDay();
 

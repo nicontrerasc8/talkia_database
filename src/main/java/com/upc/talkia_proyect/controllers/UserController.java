@@ -50,8 +50,8 @@ public class UserController {
     }
 
     @GetMapping("/users_register_date/{startDate}/{endDate}")
-    public List<UserDTO> listUserByRegisterDate(@PathVariable LocalDate startDate,@PathVariable  LocalDate endDate){
-        List<User>users = userService.listUserByRegisterDate(startDate, endDate);
+    public List<UserDTO> listUsersByRegisterDate(@PathVariable LocalDate startDate,@PathVariable  LocalDate endDate){
+        List<User>users = userService.listUsersByRegisterDate(startDate, endDate);
         List<UserDTO> userDTOS = modelMapper.map(users, List.class);
         return userDTOS;
     }

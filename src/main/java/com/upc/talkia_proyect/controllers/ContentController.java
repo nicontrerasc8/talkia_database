@@ -59,7 +59,7 @@ public class ContentController {
     }
 
     @GetMapping("/contents")
-    public List<ContentDTO> contentList() {
+    public List<ContentDTO> listContent() {
         List<Content> contents = contentService.listAllContent();
         ModelMapper modelMapper = new ModelMapper();
         List<ContentDTO> contentDTOs = modelMapper.map(contents, List.class);

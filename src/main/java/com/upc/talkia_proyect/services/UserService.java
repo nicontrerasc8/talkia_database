@@ -13,7 +13,7 @@ public interface UserService {
     public void deleteUser(int id);
     public List<User> listUsers();
     public boolean existsUser(String userName, String password);
-    public List<User> listUserByRegisterDate(LocalDate startDate, LocalDate endDate);
+    public List<User> listUsersByRegisterDate(LocalDate startDate, LocalDate endDate);
     public List<User> listUsersByStatus(String status);
     public User updateUser(User user);
     List<User> getUserByUserNameContains(String username);

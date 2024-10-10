@@ -9,6 +9,6 @@ import java.util.List;
 @Service
 public interface RatingService {
     public Integer insertRating(int id_content, int id_user, int rating);
-    public List<ShowRatingByContentDTO> ListContentOrderByScore();
+    public List<ShowRatingByContentDTO> listContentOrderByScore();
     public List<Rating> listRatingByUser(int userId);
 }

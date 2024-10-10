@@ -21,14 +21,14 @@ public class PaymentController {
 
     ModelMapper modelMapper = new ModelMapper();
 
-    @GetMapping("/paymentbyyear/{userId}")
-    public List<ShowYearlyPaymentsDTO> listHistories(@PathVariable Integer userId){
-        return paymentService.listHistories(userId);
+    @GetMapping("/paymentsbyyear/{userId}")
+    public List<ShowYearlyPaymentsDTO> listPaymentsByUser(@PathVariable Integer userId){
+        return paymentService.listPaymentsByUser(userId);
     }
     @GetMapping("/paymentbyyear/{userId}/{year}")
 
-    public List<ShowYearlyPaymentsDTO>listHistoriesByYear( @PathVariable Integer userId, @PathVariable Integer year) {
-        return paymentService.listHistoriesByYear(userId, year);
+    public List<ShowYearlyPaymentsDTO>listPaymentsByYear( @PathVariable Integer userId, @PathVariable Integer year) {
+        return paymentService.listPaymentsByYear(userId, year);
     }
     @GetMapping("/payments")
     public List<PaymentDTO> listPayments(){

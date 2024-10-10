@@ -15,13 +15,13 @@ public class PaymentServiceImpl implements PaymentService {
     private PaymentRepository paymentRepository;
 
     @Override
-    public List<ShowYearlyPaymentsDTO> listHistories(Integer userId) {
-        return paymentRepository.listHistories(userId);
+    public List<ShowYearlyPaymentsDTO> listPaymentsByUser(Integer userId) {
+        return paymentRepository.listPaymentsByUser(userId);
     }
 
     @Override
-    public List<ShowYearlyPaymentsDTO> listHistoriesByYear(Integer userId, Integer year) {
-        return paymentRepository.listHistoriesByYear(userId, year);
+    public List<ShowYearlyPaymentsDTO> listPaymentsByYear(Integer userId, Integer year) {
+        return paymentRepository.listPaymentsByYear(userId, year);
     }
     @Override
     public List<Payment> listPayments() {
