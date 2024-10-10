@@ -43,7 +43,7 @@ public class SuscriptionHistoryServiceImpl implements SuscriptionHistoryService 
         //Cambiar estado de suscripción activa
         SuscriptionsHistory shActive = shRepository.getSuscriptionsHistoriesByActiveStatus(userId);
         if(shActive!=null && shActive.getStatus().equals("Activado")){
-            shActive.setStatus("Cambiado");
+            shActive.setStatus("Finalizado");
             shActive.setEndDate(LocalDate.now());
             shRepository.save(shActive);
         }

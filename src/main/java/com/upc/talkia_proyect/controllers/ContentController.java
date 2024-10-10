@@ -45,17 +45,15 @@ public class ContentController {
         return contentService.listContentByLevelsAndTheme(level, theme);
     }
     @GetMapping("/content_theme_level_type/{type}/{theme}/{level}")
-
     public List<ShowContentByFilterDTO> listContentByAllFilters(@PathVariable String theme, @PathVariable String type, @PathVariable String level) {
         return contentService.listContentByAllFilters(theme, type, level);
     }
-    @GetMapping("/content_theme_type/{theme}/{type}")
 
+    @GetMapping("/content_theme_type/{theme}/{type}")
     public List<ShowContentByFilterDTO> listContentByThemeAndTypes( @PathVariable String theme, @PathVariable String type) {
         return contentService.listContentByThemeAndTypes(theme, type);
     }
     @GetMapping("/content_theme/{theme}")
-
     public List<ShowContentByFilterDTO> listContentByTheme(@PathVariable String theme) {
         return contentService.listContentByTheme(theme);
     }
