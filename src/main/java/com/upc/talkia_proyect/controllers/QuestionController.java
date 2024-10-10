@@ -20,7 +20,6 @@ public class QuestionController {
 
     @PutMapping("/question")
     public QuestionDTO updateQuestion(@RequestBody QuestionDTO questionDTO){
-        ModelMapper modelMapper = new ModelMapper();
         Question question = modelMapper.map(questionDTO, Question.class);
         question = questionService.updateQuestion(question);
         return modelMapper.map(question, QuestionDTO.class);
@@ -36,7 +35,6 @@ public class QuestionController {
     @GetMapping("/questions")
     public List<QuestionDTO> listQuestions(){
         List<Question>list = questionService.listQuestions();
-        ModelMapper modelMapper = new ModelMapper();
         List<QuestionDTO> listDTO = modelMapper.map(list, List.class);
         return listDTO;
     }

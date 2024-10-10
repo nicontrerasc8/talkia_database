@@ -19,20 +19,12 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 
 public class QuestionDTO {
-
     private Integer id;
-
     private String description;
-
     private String feedback;
-
     private LocalDateTime iCreatedAt;
-
     private String iCreatedBy;
-
     private LocalDateTime iModifiedAt;
-
     private String iModifiedBy;
-
     private Level level;
 }

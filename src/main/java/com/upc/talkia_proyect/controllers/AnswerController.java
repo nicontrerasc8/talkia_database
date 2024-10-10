@@ -20,7 +20,6 @@ public class AnswerController {
 
     @DeleteMapping("/answer")
     public void deleteAnswer(@RequestBody AnswerDTO answerDTO){
-        ModelMapper modelMapper = new ModelMapper();
         Answer answer = modelMapper.map(answerDTO, Answer.class);
         answerService.deleteAnswer(answer.getId());
     }

@@ -20,7 +20,7 @@ public class PaymentTypeController {
 
 
     @GetMapping("/paymentsType")
-    public List<PaymentTypeDTO> getPaymentTypes(){
+    public List<PaymentTypeDTO> listPaymentTypes(){
         List<PaymentType> list = paymentTypeService.listPaymentTypes();
         List<PaymentTypeDTO> listDTO = modelMapper.map(list, List.class);
         return listDTO;

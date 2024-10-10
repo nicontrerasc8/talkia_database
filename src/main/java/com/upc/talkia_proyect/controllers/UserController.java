@@ -37,10 +37,9 @@ public class UserController {
     }
     @PutMapping("/user")
     public UserDTO updateUser(@RequestBody UserDTO userDTO){
-        ModelMapper modelmapper = new ModelMapper();
-        User user = modelmapper.map(userDTO, User.class);
+        User user = modelMapper.map(userDTO, User.class);
         user = userService.updateUser(user);
-        return modelmapper.map(user, UserDTO.class);
+        return modelMapper.map(user, UserDTO.class);
     }
 
     @GetMapping("/users")
@@ -51,18 +50,24 @@ public class UserController {
     }
 
     @GetMapping("/users_register_date/{startDate}/{endDate}")
-    public List<User> listUserByRegisterDate(@PathVariable LocalDate startDate,@PathVariable  LocalDate endDate){
-        return userService.listUserByRegisterDate(startDate, endDate);
+    public List<UserDTO> listUserByRegisterDate(@PathVariable LocalDate startDate,@PathVariable  LocalDate endDate){
+        List<User>users = userService.listUserByRegisterDate(startDate, endDate);
+        List<UserDTO> userDTOS = modelMapper.map(users, List.class);
+        return userDTOS;
     }
 
     @GetMapping("/users_status/{status}")
-    public List<User> listUsersByStatus(@PathVariable String status){
-        return userService.listUsersByStatus(status);
+    public List<UserDTO> listUsersByStatus(@PathVariable String status){
+        List<User>users =  userService.listUsersByStatus(status);
+        List<UserDTO> userDTOS = modelMapper.map(users, List.class);
+        return userDTOS;
     }
 
     @GetMapping("/user_by_username/{username}")
-    public  List<User> getUserByUserNameContains(@PathVariable String username){
-        return  userService.getUserByUserNameContains(username);
+    public  List<UserDTO> getUserByUserNameContains(@PathVariable String username){
+        List<User>users =  userService.getUserByUserNameContains(username);
+        List<UserDTO> userDTOS = modelMapper.map(users, List.class);
+        return userDTOS;
     }
     @GetMapping("/user_by_id/{userId}")
     public User getUserById(@PathVariable int userId){

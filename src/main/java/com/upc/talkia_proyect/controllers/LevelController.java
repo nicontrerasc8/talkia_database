@@ -22,7 +22,6 @@ public class LevelController {
     @GetMapping("/levels")
     public List<LevelDTO> listLevels(){
         List<Level> levels=levelService.listLevels();
-        ModelMapper modelMapper = new ModelMapper();
         List<LevelDTO> levelsDTO =modelMapper.map(levels, List.class);
         return levelsDTO;
     }
