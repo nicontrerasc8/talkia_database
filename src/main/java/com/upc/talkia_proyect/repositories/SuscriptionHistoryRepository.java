@@ -49,4 +49,10 @@ public interface SuscriptionHistoryRepository extends JpaRepository<Suscriptions
             "from SuscriptionsHistory sh where sh.startDate between :startDate and :endDate group by sh.payment.paymentType.name ")
     List<CountHistoriesByObjectDTO> countHistoriesByPaymentType(@Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
 
+    @Query("select sh from SuscriptionsHistory sh where sh.user.id =:userId and sh.status = 'Activado'")
+    public SuscriptionsHistory getSuscriptionsHistoriesByActiveStatus(@Param("userId") int userId);
+
+    @Query("SELECT sh FROM SuscriptionsHistory sh WHERE sh.status = 'Activado' AND sh.endDate <= :currentDate")
+    List<SuscriptionsHistory> getActiveSubscriptions(@Param("currentDate") LocalDate currentDate);
+
 }

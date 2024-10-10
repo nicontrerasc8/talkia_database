@@ -6,6 +6,7 @@ import com.upc.talkia_proyect.repositories.*;
 import com.upc.talkia_proyect.services.SuscriptionHistoryService;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -31,15 +32,21 @@ public class SuscriptionHistoryServiceImpl implements SuscriptionHistoryService 
     private PaymentTypeRepository paymentTypeRepository;
 
 
-
-
-
     @Override
     @Transactional
 
     public String insertInManyToManyTable(int userId, int susId, int paymentTypeId) {
-//Ubicar al user
+
+        //Ubicar al user
         User user = userRepository.getUserById(userId);
+
+        //Cambiar estado de suscripción activa
+        SuscriptionsHistory shActive = shRepository.getSuscriptionsHistoriesByActiveStatus(userId);
+        if(shActive!=null && shActive.getStatus().equals("Activado")){
+            shActive.setStatus("Cambiado");
+            shActive.setEndDate(LocalDate.now());
+            shRepository.save(shActive);
+        }
         //Seleccionar suscripcion
         Suscription sus = suRepository.getSuscriptionById(susId);
         //Seleccionar tipo de pago
@@ -115,4 +122,35 @@ public class SuscriptionHistoryServiceImpl implements SuscriptionHistoryService 
     public List<TotalAmountBySubTypeDTO> listTotalAmountBySubType(LocalDate startDate, LocalDate endDate) {
         return shRepository.listTotalAmountBySubType(startDate, endDate);
     }
+
+    @Override
+    public SuscriptionsHistory getSuscriptionsHistoriesByActiveStatus(int userId){
+        return shRepository.getSuscriptionsHistoriesByActiveStatus(userId);
+    }
+
+    @Override
+    public List<SuscriptionsHistory> getActiveSubscriptions(LocalDate currentDate){
+        return shRepository.getActiveSubscriptions(currentDate);
+    }
+
+    //Finalizar suscripciones vencidas
+    //@Scheduled(cron = "0 0 0 * * ?") // Esta tarea se ejecutará todos los días a medianoche
+    @Scheduled(cron = "0 * * * * *") // Ejecutar cada minuto (solo para pruebas locales)
+    @Transactional
+    public void updateExpiredSubscriptions() {
+        List<SuscriptionsHistory> activeSubscriptions = shRepository.getActiveSubscriptions(LocalDate.now());
+
+        for (SuscriptionsHistory sh : activeSubscriptions) {
+            if (sh.getEndDate().isBefore(LocalDate.now())) {
+                sh.setStatus("Finalizado");
+                shRepository.save(sh);  // Actualiza el estado en la base de datos
+            }
+        }
+    }
+
+
+
+
+
+
 }

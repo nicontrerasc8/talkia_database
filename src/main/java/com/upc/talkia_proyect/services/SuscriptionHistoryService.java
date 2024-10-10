@@ -1,6 +1,7 @@
 package com.upc.talkia_proyect.services;
 
 import com.upc.talkia_proyect.dtos.queries.*;
+import com.upc.talkia_proyect.entities.SuscriptionsHistory;
 import org.modelmapper.internal.bytebuddy.asm.Advice;
 
 import java.time.LocalDate;
@@ -17,6 +18,8 @@ public interface SuscriptionHistoryService {
     public List<HistoryByObjectDTO> listHistoryByUserAndPaymentType(int userId, String paymentTypeName);
     public List<CountHistoriesByObjectDTO> countHistoriesByPaymentType(LocalDate startDate, LocalDate endDate);
     public List<TotalAmountBySubTypeDTO> listTotalAmountBySubType(LocalDate startDate, LocalDate endDate);
+    public SuscriptionsHistory getSuscriptionsHistoriesByActiveStatus(int userId);
+    public List<SuscriptionsHistory> getActiveSubscriptions(LocalDate currentDate);
 
 
 }
